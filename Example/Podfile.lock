@@ -1,0 +1,14 @@
+PODS:
+  - AZDropdownMenu (0.1.0)
+
+DEPENDENCIES:
+  - AZDropdownMenu (from `../`)
+
+EXTERNAL SOURCES:
+  AZDropdownMenu:
+    :path: ../
+
+SPEC CHECKSUMS:
+  AZDropdownMenu: f8e95d9d645aee4e52a195df2394afb9f36f7d78
+
+COCOAPODS: 0.39.0

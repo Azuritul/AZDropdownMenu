@@ -8,5 +8,9 @@ end
 target 'AZDropdownMenu_Tests', :exclusive => true do
   pod "AZDropdownMenu", :path => "../"
 
-  
+    #  pod 'Quick', '~> 0.8.0'
+    #  pod 'Nimble', '3.0.0'
+    #  pod 'FBSnapshotTestCase'
+    #  pod 'Nimble-Snapshots'
+
 end
