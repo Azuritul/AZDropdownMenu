@@ -1,9 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="AZDropdownMenu-Example" type="AppleRunConfiguration" factoryName="Application" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="AZDropdownMenu" TARGET_NAME="AZDropdownMenu_Example" CONFIG_NAME="Debug" SCHEME_NAME="AZDropdownMenu-Example" RUN_TARGET_PROJECT_NAME="AZDropdownMenu" RUN_TARGET_NAME="AZDropdownMenu_Example" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
-    <envs />
-    <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
-      <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
-    </EXTENSION>
-    <method />
-  </configuration>
-</component>
