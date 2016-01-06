@@ -14,7 +14,7 @@ Code used in the screencast are included in the bundled sample project.
 
 ## Usage
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+To run the example project, clone the repo with `git clone https://github.com/Azuritul/AZDropdownMenu.git`, and run `pod install` from the Example directory first.
 
 ## Requirements
 - iOS 8 or above
