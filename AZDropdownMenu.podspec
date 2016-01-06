@@ -1,5 +1,5 @@
 #
-# Be sure to run `pod lib lint CWDropdownMenu.podspec' to ensure this is a
+# Be sure to run `pod lib lint AZDropdownMenu.podspec' to ensure this is a
 # valid spec before submitting.
 #
 # Any lines starting with a # are optional, but their use is encouraged
@@ -7,7 +7,7 @@
 #
 
 Pod::Spec.new do |s|
-s.name             = "CWDropdownMenu"
+s.name             = "AZDropdownMenu"
 s.version          = "0.5.0"
 s.summary          = "A simple dropdown menu for iOS written in Swift!"
 
@@ -17,14 +17,14 @@ s.summary          = "A simple dropdown menu for iOS written in Swift!"
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 s.description      = <<-DESC
-CWDropdownMenu is a simple dropdown menu component that supports Swift.
+AZDropdownMenu is a simple dropdown menu component that supports Swift.
 DESC
 
-s.homepage         = "https://github.com/Azuritul/CWDropdownMenu"
+s.homepage         = "https://github.com/Azuritul/AZDropdownMenu"
 # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
 s.license          = 'MIT'
 s.author           = { "Azuritul" => "azuritul@gmail.com" }
-s.source           = { :git => "https://github.com/Azuritul/CWDropdownMenu.git", :tag => s.version.to_s }
+s.source           = { :git => "https://github.com/Azuritul/AZDropdownMenu.git", :tag => s.version.to_s }
 s.social_media_url = 'https://twitter.com/azuritul'
 
 s.platform     = :ios, '8.0'
@@ -32,7 +32,7 @@ s.requires_arc = true
 
 s.source_files = 'Pod/Classes/**/*'
 s.resource_bundles = {
-'CWDropdownMenu' => ['Pod/Assets/*.png']
+'AZDropdownMenu' => ['Pod/Assets/*.png']
 }
 
 # s.public_header_files = 'Pod/Classes/**/*.h'
