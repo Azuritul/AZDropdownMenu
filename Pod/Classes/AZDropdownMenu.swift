@@ -72,10 +72,15 @@ public class AZDropdownMenu: UIView {
     /// The text alignment of the menu item
     public var itemAlignment : NSTextAlignment = .Left
     
+    private var calcMenuHeight : CGFloat {
+        get {
+            return CGFloat(self.itemHeight * self.titles.count)
+        }
+    }
+    
     private var menuHeight : CGFloat {
         get {
-            let calcHeight = CGFloat(self.itemHeight * self.titles.count)
-            return (calcHeight > frame.size.height) ? frame.size.height : calcHeight
+            return (self.calcMenuHeight > frame.size.height) ? frame.size.height : self.calcMenuHeight
         }
     }
 
