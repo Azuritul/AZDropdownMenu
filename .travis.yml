@@ -1,7 +1,7 @@
 # references:
 # * http://www.objc.io/issue-6/travis-ci.html
 # * https://github.com/supermarin/xcpretty#usage
-
+rvm: 2.2.2
 language: objective-c
 # cache: cocoapods
 podfile: Example/Podfile
