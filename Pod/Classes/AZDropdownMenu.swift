@@ -74,13 +74,13 @@ public class AZDropdownMenu: UIView {
     
     private var calcMenuHeight : CGFloat {
         get {
-            return CGFloat(self.itemHeight * self.titles.count)
+            return CGFloat(itemHeight * titles.count)
         }
     }
     
     private var menuHeight : CGFloat {
         get {
-            return (self.calcMenuHeight > frame.size.height) ? frame.size.height : self.calcMenuHeight
+            return (calcMenuHeight > frame.size.height) ? frame.size.height : calcMenuHeight
         }
     }
 
@@ -103,48 +103,49 @@ public class AZDropdownMenu: UIView {
     
     // MARK: - View lifecycle
     override public func layoutSubviews() {
-        if self.isSetUpFinished == false {
+        if isSetUpFinished == false {
             setupInitialLayout()
         }
     }
 
     private func initOverlay() {
         let frame = UIScreen.mainScreen().bounds
-        self.overlay.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)
-        self.overlay.backgroundColor = self.overlayColor
-        self.overlay.accessibilityIdentifier = "OVERLAY"
-        self.overlay.alpha = 0
-        self.addSubview(self.overlay)
+        overlay.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)
+        overlay.backgroundColor = self.overlayColor
+        overlay.accessibilityIdentifier = "OVERLAY"
+        overlay.alpha = 0
+        overlay.userInteractionEnabled = true
+        let touch : UIGestureRecognizer = UITapGestureRecognizer(target: self, action: "overlayTapped")
+        overlay.addGestureRecognizer(touch)
+        addSubview(overlay)
     }
 
     private func initMenu() {
         let frame = UIScreen.mainScreen().bounds
         let menuFrame = CGRectMake(0, 0, frame.size.width, menuHeight)
 
-        self.menuView = UITableView(frame: menuFrame, style: .Plain)
-        self.menuView.userInteractionEnabled = true
-        self.menuView.rowHeight = CGFloat(self.itemHeight)
-        self.menuView.registerClass(UITableViewCell.self, forCellReuseIdentifier:DROPDOWN_MENU_CELL_KEY)
-        self.menuView.dataSource = self
-        self.menuView.delegate = self
-        self.menuView.scrollEnabled = false
-        self.menuView.accessibilityIdentifier = "MENU"
-        self.addSubview(self.menuView)
+        menuView = UITableView(frame: menuFrame, style: .Plain)
+        menuView.userInteractionEnabled = true
+        menuView.rowHeight = CGFloat(itemHeight)
+        menuView.registerClass(UITableViewCell.self, forCellReuseIdentifier:DROPDOWN_MENU_CELL_KEY)
+        menuView.dataSource = self
+        menuView.delegate = self
+        menuView.scrollEnabled = false
+        menuView.accessibilityIdentifier = "MENU"
+        addSubview(menuView)
     }
 
     private func setupInitialLayout() {
 
-        let viewWidth = UIScreen.mainScreen().bounds.width
-
         var constraintsArray : [NSLayoutConstraint] = []
-        let height = NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: menuHeight)
-        let width = NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: viewWidth)
+        let height = NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: UIScreen.mainScreen().bounds.height)
+        let width = NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: UIScreen.mainScreen().bounds.width)
 
         constraintsArray.append(height)
         constraintsArray.append(width)
 
-        self.addConstraints(constraintsArray)
-        self.isSetUpFinished = true
+        addConstraints(constraintsArray)
+        isSetUpFinished = true
         
     }
     
@@ -160,6 +161,10 @@ public class AZDropdownMenu: UIView {
             }
         )
     }
+    
+    func overlayTapped() {
+        hideMenu()
+    }
 
     //MARK: - Public methods to control the menu
     
@@ -173,7 +178,7 @@ public class AZDropdownMenu: UIView {
         view.addSubview(self)
         
         animateOvelay(overlayAlpha, interval: 0.4, completionHandler: nil)
-        self.menuView.reloadData()
+        menuView.reloadData()
         UIView.animateWithDuration(
             0.2,
             delay:0,
@@ -210,17 +215,17 @@ public class AZDropdownMenu: UIView {
 extension AZDropdownMenu: UITableViewDataSource {
 
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.titles.count
+        return titles.count
     }
 
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier(DROPDOWN_MENU_CELL_KEY) {
             cell.selectionStyle = UITableViewCellSelectionStyle.Gray
-            cell.backgroundColor = self.itemColor
-            cell.textLabel?.textColor = self.itemFontColor
-            cell.textLabel?.textAlignment = self.itemAlignment
-            cell.textLabel?.font = UIFont.systemFontOfSize(self.itemFontSize)
-            cell.textLabel?.text = self.titles[indexPath.row]
+            cell.backgroundColor = itemColor
+            cell.textLabel?.textColor = itemFontColor
+            cell.textLabel?.textAlignment = itemAlignment
+            cell.textLabel?.font = UIFont.systemFontOfSize(itemFontSize)
+            cell.textLabel?.text = titles[indexPath.row]
             return cell
             
         }
@@ -234,12 +239,12 @@ extension AZDropdownMenu: UITableViewDelegate {
 
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated:true)
-        self.cellTapHandler?(indexPath:indexPath)
+        cellTapHandler?(indexPath:indexPath)
         hideMenu()
     }
     
     public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return CGFloat(self.itemHeight)
+        return CGFloat(itemHeight)
     }
 
 }
