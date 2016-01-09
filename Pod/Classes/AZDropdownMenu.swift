@@ -37,7 +37,10 @@ public class AZDropdownMenu: UIView {
     
     /// The color of the menu item
     public var itemColor : UIColor = UIColor.whiteColor()
-    
+
+    /// The background color of the menu item while being tapped
+    public var itemSelectionColor : UIColor = UIColor.lightGrayColor()
+
     /// The text color of the menu item
     public var itemFontColor : UIColor = UIColor.blackColor()
     
@@ -137,14 +140,10 @@ public class AZDropdownMenu: UIView {
 
     private func setupInitialLayout() {
 
-        var constraintsArray : [NSLayoutConstraint] = []
         let height = NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: UIScreen.mainScreen().bounds.height)
         let width = NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: UIScreen.mainScreen().bounds.width)
 
-        constraintsArray.append(height)
-        constraintsArray.append(width)
-
-        addConstraints(constraintsArray)
+        addConstraints([height, width])
         isSetUpFinished = true
         
     }
@@ -220,7 +219,7 @@ extension AZDropdownMenu: UITableViewDataSource {
 
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier(DROPDOWN_MENU_CELL_KEY) {
-            cell.selectionStyle = UITableViewCellSelectionStyle.Gray
+            cell.selectionStyle = .None
             cell.backgroundColor = itemColor
             cell.textLabel?.textColor = itemFontColor
             cell.textLabel?.textAlignment = itemAlignment
@@ -240,7 +239,17 @@ extension AZDropdownMenu: UITableViewDelegate {
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated:true)
         cellTapHandler?(indexPath:indexPath)
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+            cell.backgroundColor = itemSelectionColor
+        }
+        
         hideMenu()
+    }
+    
+    public func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+            cell.backgroundColor = itemColor
+        }
     }
     
     public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

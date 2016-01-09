@@ -61,14 +61,18 @@ Take a look at the sample project in this repository to get more usage of the li
 Currently AZDropdownMenu can be customized with the following properties. More will come in the future.
 
 - `itemHeight` Row height of the menu item. Default is 44.
-- `itemColor` The color of the menu item. Default is white.
+- `itemColor` The background color of the menu item. Default is white.
 - `itemFontColor` The text color of the menu item. Default is black.
 - `itemFontSize` Font size of the menu item. Default is 14.0
 - `itemAlignment` The text alignment of the menu item. Default is left-aligned.
+- `itemSelectionColor` The background color of the menu item while it is tapped. Default is gray.
 - `overlayAlpha` The transparency for the background overlay. Default is 0.5
 - `overlayColor` Color for the background overlay. Default is black.
 - `menuSeparatorStyle` The separator of the menu. Default is single line.
 
+
+### Version
+- 0.5.3 Now can configure item's background color while tapped
 
 ## Author
 
