@@ -36,21 +36,44 @@ public class AZDropdownMenu: UIView {
     }
     
     /// The color of the menu item
-    public var itemColor : UIColor = UIColor.whiteColor()
-
+    public var itemColor : UIColor = UIColor.whiteColor() {
+        didSet {
+            self.menuConfig?.itemColor = itemColor
+        }
+    }
+ 
     /// The background color of the menu item while being tapped
-    public var itemSelectionColor : UIColor = UIColor.lightGrayColor()
+    public var itemSelectionColor : UIColor = UIColor.lightGrayColor() {
+        didSet {
+            self.menuConfig?.itemSelectionColor = itemSelectionColor
+        }
+    }
+    
+    /// The font of the item
+    public var itemFontName : String = "Helvetica" {
+        didSet {
+            self.menuConfig?.itemFont = itemFontName
+        }
+    }
 
     /// The text color of the menu item
-    public var itemFontColor : UIColor = UIColor.blackColor()
+    public var itemFontColor : UIColor = UIColor(red: 140/255, green: 134/255, blue: 125/255, alpha: 1.0) {
+        didSet {
+            self.menuConfig?.itemFontColor = itemFontColor
+        }
+    }
     
     /// Font size of the menu item
-    public var itemFontSize : CGFloat = 14.0
+    public var itemFontSize : CGFloat = 14.0 {
+        didSet {
+            self.menuConfig?.itemFontSize = itemFontSize
+        }
+    }
     
     /// The alpha for the background overlay
     public var overlayAlpha : CGFloat = 0.5 {
         didSet {
-            self.overlay.alpha = self.overlayAlpha
+            self.menuConfig?.overlayAlpha = self.overlayAlpha
         }
     }
     
@@ -58,26 +81,47 @@ public class AZDropdownMenu: UIView {
     public var overlayColor : UIColor = UIColor.blackColor() {
         didSet {
             self.overlay.backgroundColor = self.overlayColor
+            self.menuConfig?.overlayColor = self.overlayColor
         }
     }
     
-    public var menuSeparatorStyle:CWDropdownMenuSeperatorStyle = .Singleline {
+    public var menuSeparatorStyle:AZDropdownMenuSeperatorStyle = .Singleline {
         didSet {
             switch(menuSeparatorStyle){
                 case .None:
                     self.menuView.separatorStyle = .None
+                    self.menuConfig?.menuSeparatorStyle = .None
                 case .Singleline:
                     self.menuView.separatorStyle = .SingleLine
+                    self.menuConfig?.menuSeparatorStyle = .Singleline
             }
         }
     }
     
+    public var menuSeparatorColor:UIColor = UIColor.lightGrayColor() {
+        didSet {
+            self.menuConfig?.menuSeparatorColor = self.menuSeparatorColor
+            self.menuView.separatorColor = self.menuSeparatorColor
+        }
+    }
+    
     /// The text alignment of the menu item
-    public var itemAlignment : NSTextAlignment = .Left
+    public var itemAlignment : AZDropdownMenuItemAlignment = .Left {
+        didSet {
+            switch(itemAlignment) {
+                case .Right:
+                    self.menuConfig?.itemAlignment = .Right
+                case .Left:
+                    self.menuConfig?.itemAlignment = .Left
+                case .Center:
+                    self.menuConfig?.itemAlignment = .Center
+            }
+        }
+    }
     
     private var calcMenuHeight : CGFloat {
         get {
-            return CGFloat(itemHeight * titles.count)
+            return CGFloat(itemHeight * itemDataSource.count)
         }
     }
     
@@ -86,13 +130,34 @@ public class AZDropdownMenu: UIView {
             return (calcMenuHeight > frame.size.height) ? frame.size.height : calcMenuHeight
         }
     }
-
+    
+    private var itemDataSource : [AZDropdownMenuItemData] = []
+    private var reuseId : String?
+    private var menuConfig : AZDropdownMenuConfig?
+    
     // MARK: - Initializer
     public init(titles:[String]) {
         self.isSetUpFinished = false
         self.titles = titles
+        for title in titles {
+            itemDataSource.append(AZDropdownMenuItemData(title: title))
+        }
+        self.menuConfig = AZDropdownMenuConfig()
         super.init(frame:UIScreen.mainScreen().bounds)
-        self.accessibilityIdentifier = "CWDropdownMenu"
+        self.accessibilityIdentifier = "AZDropdownMenu"
+        self.backgroundColor = UIColor.clearColor()
+        self.alpha = 0.95;
+        self.translatesAutoresizingMaskIntoConstraints = false
+        initOverlay()
+        initMenu()
+    }
+    
+    public init(dataSource:[AZDropdownMenuItemData]) {
+        self.isSetUpFinished = false
+        self.itemDataSource = dataSource
+        self.menuConfig = AZDropdownMenuConfig()
+        super.init(frame:UIScreen.mainScreen().bounds)
+        self.accessibilityIdentifier = "AZDropdownMenu"
         self.backgroundColor = UIColor.clearColor()
         self.alpha = 0.95;
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -130,11 +195,14 @@ public class AZDropdownMenu: UIView {
         menuView = UITableView(frame: menuFrame, style: .Plain)
         menuView.userInteractionEnabled = true
         menuView.rowHeight = CGFloat(itemHeight)
-        menuView.registerClass(UITableViewCell.self, forCellReuseIdentifier:DROPDOWN_MENU_CELL_KEY)
+        if self.reuseId == nil {
+            self.reuseId = DROPDOWN_MENU_CELL_KEY
+        }
         menuView.dataSource = self
         menuView.delegate = self
         menuView.scrollEnabled = false
         menuView.accessibilityIdentifier = "MENU"
+        menuView.separatorColor = menuConfig?.menuSeparatorColor
         addSubview(menuView)
     }
 
@@ -214,24 +282,33 @@ public class AZDropdownMenu: UIView {
 extension AZDropdownMenu: UITableViewDataSource {
 
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titles.count
+        return itemDataSource.count
+    }
+    
+    func getCellByData() -> AZDropdownMenuBaseCell? {
+        if let _ = itemDataSource.first?.icon {
+            return AZDropdownMenuDefaultCell(reuseIdentifier: DROPDOWN_MENU_CELL_KEY, config: self.menuConfig!)
+            } else {
+                return AZDropdownMenuBaseCell(style: .Default, reuseIdentifier: DROPDOWN_MENU_CELL_KEY)
+                
+        }
     }
 
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCellWithIdentifier(DROPDOWN_MENU_CELL_KEY) {
-            cell.selectionStyle = .None
-            cell.backgroundColor = itemColor
-            cell.textLabel?.textColor = itemFontColor
-            cell.textLabel?.textAlignment = itemAlignment
-            cell.textLabel?.font = UIFont.systemFontOfSize(itemFontSize)
-            cell.textLabel?.text = titles[indexPath.row]
+        if let cell = getCellByData() {
+            let item = itemDataSource[indexPath.row]
+            if let config = self.menuConfig {
+                cell.configureStyle(config)
+            }
+            cell.configureData(item)
+            cell.layoutIfNeeded()
             return cell
-            
         }
         return UITableViewCell()
     }
 
 }
+
 
 // MARK: - UITableViewDelegate
 extension AZDropdownMenu: UITableViewDelegate {
@@ -258,12 +335,47 @@ extension AZDropdownMenu: UITableViewDelegate {
 
 }
 
+struct AZDropdownMenuConfig {
+
+    var itemColor : UIColor = UIColor.whiteColor()
+    var itemSelectionColor : UIColor = UIColor.lightGrayColor()
+    var itemAlignment : AZDropdownMenuItemAlignment = .Left
+    var itemFontColor : UIColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
+    var itemFontSize : CGFloat = 14.0
+    var itemFont : String = "Helvetica"
+    var overlayAlpha : CGFloat = 0.5
+    var overlayColor : UIColor = UIColor.blackColor()
+    var menuSeparatorStyle:AZDropdownMenuSeperatorStyle = .Singleline
+    var menuSeparatorColor:UIColor = UIColor.lightGrayColor()
+    
+}
+
+
+/**
+ *  Menu's model object
+ */
+public struct AZDropdownMenuItemData {
+    
+    public let title:String
+    public let icon:UIImage?
+    
+    public init(title:String){
+        self.title = title
+        self.icon = nil
+    }
+    
+    public init(title:String, icon:UIImage) {
+        self.title = title
+        self.icon = icon
+    }
+}
+
 /**
  The separator style of the menu
  
  - Singleline: A solid single line
  - None:       No Separator
  */
-public enum CWDropdownMenuSeperatorStyle {
+public enum AZDropdownMenuSeperatorStyle {
     case Singleline, None
 }
