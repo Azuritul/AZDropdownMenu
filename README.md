@@ -11,7 +11,9 @@ AZDropdownMenu is a simple dropdown menu component that supports Swift.
 ## Screenshots
 Code used in the screencast are included in the bundled sample project.
 
-![screenshot](https://cloud.githubusercontent.com/assets/879197/12143573/0654fec2-b4c5-11e5-80fd-d80f6b7df058.gif)
+|Default (left aligned) | Customized(with icon) |
+|---|--|
+|![default_menu](https://cloud.githubusercontent.com/assets/879197/12356835/074e2c16-bbe8-11e5-8edf-0f5ed40ef7c9.gif)|![custom_menu](https://cloud.githubusercontent.com/assets/879197/12356867/33af8e44-bbe8-11e5-8c5f-cd0e5f69733c.gif)|
 
 ## Usage
 
@@ -29,7 +31,6 @@ it, simply add the following line to your Podfile:
 
 ```ruby
 use_frameworks!
-
 pod 'AZDropdownMenu'
 ```
 
@@ -38,7 +39,6 @@ pod 'AZDropdownMenu'
 Declare an array of texts that are served as the item in the menu.
 ```swift
 let titles = ["Action 1", "Action 2", "Action 3"]
-
 ```
 Then pass the array to the initializer
 ```swift
@@ -55,7 +55,10 @@ self?.navigationController?.pushViewController(controller, animated:true)
 }
 ```
 
-Take a look at the sample project in this repository to get more usage of the library.
+#### Create menu with icons
+Pass in a AZDropdownMenuItemData in the initializer: `public init(dataSource:[AZDropdownMenuItemData])` and you are good to go.
+
+> Do take a look at the sample project in this repository to get more usage of the library.
 
 ### Configurable options
 Currently AZDropdownMenu can be customized with the following properties. More will come in the future.
@@ -64,15 +67,23 @@ Currently AZDropdownMenu can be customized with the following properties. More w
 - `itemColor` The background color of the menu item. Default is white.
 - `itemFontColor` The text color of the menu item. Default is black.
 - `itemFontSize` Font size of the menu item. Default is 14.0
-- `itemAlignment` The text alignment of the menu item. Default is left-aligned.
+- `itemFont` Font used in the menu. Default is 'Helvetica'
+- `itemAlignment` The alignment of the menu item. Default is left-aligned.
 - `itemSelectionColor` The background color of the menu item while it is tapped. Default is gray.
 - `overlayAlpha` The transparency for the background overlay. Default is 0.5
 - `overlayColor` Color for the background overlay. Default is black.
 - `menuSeparatorStyle` The separator of the menu. Default is single line.
+- `menuSeparatorColor` The color of the separator. Default is light gray.
 
+## Version
+- 0.6.0
+   - Now can use icons in the menu.
+   - Added configuration options: `menuSeparatorColor`, `itemFont`
+- 0.5.3
+   - Now can configure item's background color while tapped
 
-### Version
-- 0.5.3 Now can configure item's background color while tapped
+## Credit
+- The icons used in the sample project are from [Glyphicons](http://www.glyphicons.com/).
 
 ## Author
 

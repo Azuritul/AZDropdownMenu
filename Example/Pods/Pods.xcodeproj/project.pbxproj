@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0075F57F1C3D5E6A00568836 /* AZDropdownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075F57E1C3D5E6A00568836 /* AZDropdownMenu.swift */; };
+		007721B61C44D40F00D6EE86 /* AZDropdownMenuDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007721B51C44D40F00D6EE86 /* AZDropdownMenuDefaultCell.swift */; };
+		007EADDE1C48A10A00568C34 /* AZDropdownMenuBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007EADDD1C48A10A00568C34 /* AZDropdownMenuBaseCell.swift */; };
 		1211A19D9DB80A913452EFCA80B4B997 /* Pods-AZDropdownMenu_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D6A339620451D60E81FA2F7E943F9BCC /* Pods-AZDropdownMenu_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2E20D94D11E78BE9768DBE6F2B669A17 /* AZDropdownMenu.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 65199DFD4527304739A9E95177B24A51 /* AZDropdownMenu.bundle */; };
 		4B03F68CE2CA96F66A1CD10128B179A0 /* Pods-AZDropdownMenu_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CBD51C2D128FBDB934723B18455B6226 /* Pods-AZDropdownMenu_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -46,6 +48,8 @@
 
 /* Begin PBXFileReference section */
 		0075F57E1C3D5E6A00568836 /* AZDropdownMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AZDropdownMenu.swift; sourceTree = "<group>"; };
+		007721B51C44D40F00D6EE86 /* AZDropdownMenuDefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AZDropdownMenuDefaultCell.swift; sourceTree = "<group>"; };
+		007EADDD1C48A10A00568C34 /* AZDropdownMenuBaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AZDropdownMenuBaseCell.swift; sourceTree = "<group>"; };
 		01732D35DFCBA2D1C77EE01838FD88A8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11BBAF2C0D1FCD93F26508241026869E /* AZDropdownMenu.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AZDropdownMenu.xcconfig; sourceTree = "<group>"; };
 		21D7BEAC0D401A57CEF6C34C1156BCC0 /* AZDropdownMenu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = AZDropdownMenu.modulemap; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				0075F57E1C3D5E6A00568836 /* AZDropdownMenu.swift */,
+				007721B51C44D40F00D6EE86 /* AZDropdownMenuDefaultCell.swift */,
+				007EADDD1C48A10A00568C34 /* AZDropdownMenuBaseCell.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -423,7 +429,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				007721B61C44D40F00D6EE86 /* AZDropdownMenuDefaultCell.swift in Sources */,
 				B1D61534ABD62188A5A5D1D3953BEFF2 /* AZDropdownMenu-dummy.m in Sources */,
+				007EADDE1C48A10A00568C34 /* AZDropdownMenuBaseCell.swift in Sources */,
 				0075F57F1C3D5E6A00568836 /* AZDropdownMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
