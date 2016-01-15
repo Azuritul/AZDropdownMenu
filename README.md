@@ -11,9 +11,11 @@ AZDropdownMenu is a simple dropdown menu component that supports Swift.
 ## Screenshots
 Code used in the screencast are included in the bundled sample project.
 
-|Default (left aligned) | Customized(with icon) |
-|---|--|
-|![default_menu](https://cloud.githubusercontent.com/assets/879197/12356835/074e2c16-bbe8-11e5-8edf-0f5ed40ef7c9.gif)|![custom_menu](https://cloud.githubusercontent.com/assets/879197/12356867/33af8e44-bbe8-11e5-8c5f-cd0e5f69733c.gif)|
+#### Menu with default setting (left aligned)
+![default_menu](https://cloud.githubusercontent.com/assets/879197/12356835/074e2c16-bbe8-11e5-8edf-0f5ed40ef7c9.gif)
+
+#### Customized(with icon)
+![custom_menu](https://cloud.githubusercontent.com/assets/879197/12356867/33af8e44-bbe8-11e5-8c5f-cd0e5f69733c.gif)
 
 ## Usage
 
