@@ -10,7 +10,7 @@ import UIKit
 import AZDropdownMenu
 
 class ViewController: UIViewController {
-    
+
     var rightMenu: AZDropdownMenu?
     var leftMenu: AZDropdownMenu?
     
@@ -68,12 +68,12 @@ class ViewController: UIViewController {
         menu.itemAlignment = .Center
         return menu
     }
-    
+
     private func pushNewViewController(title: String) {
         let newController = UIViewController()
         newController.title = title
         newController.view.backgroundColor = UIColor.whiteColor()
-        dispatch_async(dispatch_get_main_queue(),{
+        dispatch_async(dispatch_get_main_queue(), {
             self.navigationController?.pushViewController(newController, animated: true)
         })
     }
@@ -84,7 +84,7 @@ class ViewController: UIViewController {
     
     private func createDummyDatasource() -> [AZDropdownMenuItemData] {
         var dataSource : [AZDropdownMenuItemData] = []
-        for index in  0..<5 {
+        for index in 0 ..< 5 {
             switch(index){
             case 0:
                 let i = AZDropdownMenuItemData(title:"Action With Icon 1", icon:UIImage(imageLiteral: "glyphicons-1-glass"))
@@ -106,17 +106,17 @@ class ViewController: UIViewController {
         }
         return dataSource
     }
-    
-    func showRightDropdown(){
-        if(self.rightMenu?.isDescendantOfView(self.view) == true) {
+
+    func showRightDropdown() {
+        if (self.rightMenu?.isDescendantOfView(self.view) == true) {
             self.rightMenu?.hideMenu()
         } else {
             self.rightMenu?.showMenuFromView(self.view)
         }
     }
-    
-    func showLeftDropdown(){
-        if(self.leftMenu?.isDescendantOfView(self.view) == true) {
+
+    func showLeftDropdown() {
+        if (self.leftMenu?.isDescendantOfView(self.view) == true) {
             self.leftMenu?.hideMenu()
         } else {
             self.leftMenu?.showMenuFromView(self.view)

@@ -288,9 +288,8 @@ extension AZDropdownMenu: UITableViewDataSource {
     func getCellByData() -> AZDropdownMenuBaseCell? {
         if let _ = itemDataSource.first?.icon {
             return AZDropdownMenuDefaultCell(reuseIdentifier: DROPDOWN_MENU_CELL_KEY, config: self.menuConfig!)
-            } else {
-                return AZDropdownMenuBaseCell(style: .Default, reuseIdentifier: DROPDOWN_MENU_CELL_KEY)
-                
+        } else {
+            return AZDropdownMenuBaseCell(style: .Default, reuseIdentifier: DROPDOWN_MENU_CELL_KEY)
         }
     }
 
