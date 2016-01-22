@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Azdropdownmenu by Azuritul</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Azdropdownmenu</h1>
+        <p>A simple dropdown menu component for iOS written in Swift</p>
+
+        <p class="view"><a href="https://github.com/Azuritul/AZDropdownMenu">View the Project on GitHub <small>Azuritul/AZDropdownMenu</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/Azuritul/AZDropdownMenu/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Azuritul/AZDropdownMenu/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Azuritul/AZDropdownMenu">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="azdropdownmenu" class="anchor" href="#azdropdownmenu" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>AZDropdownMenu</h1>
+
+<p><a href="https://travis-ci.org/Azuritul/AZDropdownMenu"><img src="http://img.shields.io/travis/Azuritul/AZDropdownMenu.svg?style=flat" alt="CI Status"></a>
+<a href="http://cocoapods.org/pods/AZDropdownMenu"><img src="https://img.shields.io/cocoapods/v/AZDropdownMenu.svg?style=flat" alt="Version"></a>
+<a href="http://cocoapods.org/pods/AZDropdownMenu"><img src="https://img.shields.io/cocoapods/l/AZDropdownMenu.svg?style=flat" alt="License"></a>
+<a href="http://cocoapods.org/pods/AZDropdownMenu"><img src="https://img.shields.io/cocoapods/p/AZDropdownMenu.svg?style=flat" alt="Platform"></a>
+<a href="http://swift.org"><img src="https://img.shields.io/badge/swift-2.0-orange.svg" alt="Language"></a></p>
+
+<p>AZDropdownMenu is a simple dropdown menu component that supports Swift.</p>
+
+<h2>
+<a id="screenshots" class="anchor" href="#screenshots" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Screenshots</h2>
+
+<p>Code used in the screencast are included in the bundled sample project.</p>
+
+<h4>
+<a id="menu-with-default-setting-left-aligned" class="anchor" href="#menu-with-default-setting-left-aligned" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Menu with default setting (left aligned)</h4>
+
+<p><img src="https://cloud.githubusercontent.com/assets/879197/12356835/074e2c16-bbe8-11e5-8edf-0f5ed40ef7c9.gif" alt="default_menu"></p>
+
+<h4>
+<a id="customizedwith-icon" class="anchor" href="#customizedwith-icon" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Customized(with icon)</h4>
+
+<p><img src="https://cloud.githubusercontent.com/assets/879197/12356867/33af8e44-bbe8-11e5-8c5f-cd0e5f69733c.gif" alt="custom_menu"></p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>To run the example project, clone the repo with <code>git clone https://github.com/Azuritul/AZDropdownMenu.git</code>, and run <code>pod install</code> from the Example directory first.</p>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li>iOS 8 or above</li>
+<li>Xcode 7 or above</li>
+<li>Swift 2.0</li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>AZDropdownMenu is available through <a href="http://cocoapods.org">CocoaPods</a>. To install
+it, simply add the following line to your Podfile:</p>
+
+<div class="highlight highlight-source-ruby"><pre>use_frameworks!
+pod <span class="pl-s"><span class="pl-pds">'</span>AZDropdownMenu<span class="pl-pds">'</span></span></pre></div>
+
+<h2>
+<a id="usage-1" class="anchor" href="#usage-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Declare an array of texts that are served as the item in the menu.</p>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> titles <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">"</span>Action 1<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Action 2<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Action 3<span class="pl-pds">"</span></span>]</pre></div>
+
+<p>Then pass the array to the initializer</p>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> menu <span class="pl-k">=</span> AZDropdownMenu(titles: leftTitles )</pre></div>
+
+<p>Calling <code>public func showMenuFromView(view:UIView)</code> can then show the menu.</p>
+
+<p>The handler <code>public var cellTapHandler : ((indexPath:NSIndexPath) -&gt; Void)?</code> would be called
+when menu item is tapped. So place code in here to do whatever you want. For example</p>
+
+<div class="highlight highlight-source-swift"><pre>menu<span class="pl-k">.</span>cellTapHandler <span class="pl-k">=</span> { [<span class="pl-k">weak</span> <span class="pl-k">self</span>] (indexPath: NSIndexPath) <span class="pl-k">-&gt;</span> <span class="pl-c1">Void</span> <span class="pl-k">in</span>
+<span class="pl-k">self</span>?<span class="pl-k">.</span>navigationController?<span class="pl-k">.</span>pushViewController(controller, animated:<span class="pl-c1">true</span>)
+}</pre></div>
+
+<h4>
+<a id="create-menu-with-icons" class="anchor" href="#create-menu-with-icons" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create menu with icons</h4>
+
+<p>Pass in a AZDropdownMenuItemData in the initializer: <code>public init(dataSource:[AZDropdownMenuItemData])</code> and you are good to go.</p>
+
+<blockquote>
+<p>Do take a look at the sample project in this repository to get more usage of the library.</p>
+</blockquote>
+
+<h3>
+<a id="configurable-options" class="anchor" href="#configurable-options" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configurable options</h3>
+
+<p>Currently AZDropdownMenu can be customized with the following properties. More will come in the future.</p>
+
+<ul>
+<li>
+<code>itemHeight</code> Row height of the menu item. Default is 44.</li>
+<li>
+<code>itemColor</code> The background color of the menu item. Default is white.</li>
+<li>
+<code>itemFontColor</code> The text color of the menu item. Default is black.</li>
+<li>
+<code>itemFontSize</code> Font size of the menu item. Default is 14.0</li>
+<li>
+<code>itemFont</code> Font used in the menu. Default is 'Helvetica'</li>
+<li>
+<code>itemAlignment</code> The alignment of the menu item. Default is left-aligned.</li>
+<li>
+<code>itemSelectionColor</code> The background color of the menu item while it is tapped. Default is gray.</li>
+<li>
+<code>overlayAlpha</code> The transparency for the background overlay. Default is 0.5</li>
+<li>
+<code>overlayColor</code> Color for the background overlay. Default is black.</li>
+<li>
+<code>menuSeparatorStyle</code> The separator of the menu. Default is single line.</li>
+<li>
+<code>menuSeparatorColor</code> The color of the separator. Default is light gray.</li>
+</ul>
+
+<h2>
+<a id="version" class="anchor" href="#version" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Version</h2>
+
+<ul>
+<li>0.6.0
+
+<ul>
+<li>Now can use icons in the menu.</li>
+<li>Added configuration options: <code>menuSeparatorColor</code>, <code>itemFont</code>
+</li>
+</ul>
+</li>
+<li>0.5.3
+
+<ul>
+<li>Now can configure item's background color while tapped</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<a id="credit" class="anchor" href="#credit" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Credit</h2>
+
+<ul>
+<li>The icons used in the sample project are from <a href="http://www.glyphicons.com/">Glyphicons</a>.</li>
+</ul>
+
+<h2>
+<a id="author" class="anchor" href="#author" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Author</h2>
+
+<p>Chris Wu (Azuritul), <a href="mailto:azuritul@gmail.com">azuritul@gmail.com</a></p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>AZDropdownMenu is available under the MIT license. See the LICENSE file for more info.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/Azuritul">Azuritul</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
