@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let nav = UINavigationController(rootViewController: rootViewController)
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        
+        self.window?.tintColor = UIColor.blackColor()
         self.window!.rootViewController = nav
         self.window!.makeKeyAndVisible()
         return true

@@ -119,6 +119,18 @@ public class AZDropdownMenu: UIView {
         }
     }
     
+    /// The image position, default to .Prefix.  Image will be displayed after item's text if set to .Postfix
+    public var itemImagePosition : AZDropdownMenuItemImagePosition = .Prefix {
+        didSet {
+            switch(itemImagePosition) {
+            case .Prefix:
+                self.menuConfig?.itemImagePosition = .Prefix
+            case .Postfix:
+                self.menuConfig?.itemImagePosition = .Postfix
+            }
+        }
+    }
+    
     private var calcMenuHeight : CGFloat {
         get {
             return CGFloat(itemHeight * itemDataSource.count)
@@ -146,7 +158,7 @@ public class AZDropdownMenu: UIView {
         super.init(frame:UIScreen.mainScreen().bounds)
         self.accessibilityIdentifier = "AZDropdownMenu"
         self.backgroundColor = UIColor.clearColor()
-        self.alpha = 0.95;
+        self.alpha = 0.95
         self.translatesAutoresizingMaskIntoConstraints = false
         initOverlay()
         initMenu()
@@ -344,9 +356,9 @@ struct AZDropdownMenuConfig {
     var itemFont : String = "Helvetica"
     var overlayAlpha : CGFloat = 0.5
     var overlayColor : UIColor = UIColor.blackColor()
-    var menuSeparatorStyle:AZDropdownMenuSeperatorStyle = .Singleline
-    var menuSeparatorColor:UIColor = UIColor.lightGrayColor()
-    
+    var menuSeparatorStyle : AZDropdownMenuSeperatorStyle = .Singleline
+    var menuSeparatorColor : UIColor = UIColor.lightGrayColor()
+    var itemImagePosition : AZDropdownMenuItemImagePosition = .Prefix
 }
 
 
@@ -377,4 +389,14 @@ public struct AZDropdownMenuItemData {
  */
 public enum AZDropdownMenuSeperatorStyle {
     case Singleline, None
+}
+
+/**
+ The position of image icon in the menu
+ 
+ - Prefix:  Place icon before item title
+ - Postfix: Place icon after item title
+ */
+public enum AZDropdownMenuItemImagePosition {
+    case Prefix, Postfix
 }
