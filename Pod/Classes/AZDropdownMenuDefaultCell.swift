@@ -2,8 +2,8 @@
 //  AZDropdownMenuDefaultCell.swift
 //  Pods
 //
-//  Created by azuritul on 2016/1/12.
-//
+//  Created by Chris Wu on 01/12/2016.
+//  Copyright (c) 2016 Chris Wu. All rights reserved.
 //
 
 import UIKit
@@ -54,15 +54,36 @@ public final class AZDropdownMenuDefaultCell: AZDropdownMenuBaseCell {
     }
 
     private func constraintsForLeftAlignment(viewBindings: [String:AnyObject]) -> [NSLayoutConstraint] {
-        return NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[icon]-10-[title]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
+        switch config.itemImagePosition {
+            case .Prefix:
+                return NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[icon]-10-[title]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
+            case .Postfix:
+                return NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[title]-10-[icon]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
+        }
+        
     }
 
     private func constraintsForRightAlignment(viewBindings: [String:AnyObject]) -> [NSLayoutConstraint] {
-        return NSLayoutConstraint.constraintsWithVisualFormat("H:[icon]-10-[title]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
+        switch config.itemImagePosition {
+        case .Prefix:
+            return NSLayoutConstraint.constraintsWithVisualFormat("H:[title]-10-[icon]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
+        case .Postfix:
+            return NSLayoutConstraint.constraintsWithVisualFormat("H:[title]-10-[icon]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
+        }
+        
+        
     }
 
     private func constraintsForCenterAlignment(viewBindings: [String:AnyObject]) -> [NSLayoutConstraint] {
-        var constraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[icon]-10-[title]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
+        var constraints:[NSLayoutConstraint]
+        switch config.itemImagePosition {
+            case .Prefix:
+                constraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[icon]-10-[title]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
+            case .Postfix:
+                constraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[title]-10-[icon]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
+        }
+        
+        
         let innerCenterX = NSLayoutConstraint(item: titleLabel, attribute: .CenterX, relatedBy: .Equal, toItem: innerContainer, attribute: .CenterX, multiplier: 1, constant: 0)
         constraints.append(innerCenterX)
         return constraints

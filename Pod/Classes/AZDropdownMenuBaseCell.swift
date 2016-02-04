@@ -2,8 +2,8 @@
 //  AZDropdownMenuBaseCell.swift
 //  Pods
 //
-//  Created by azuritul on 2016/1/15.
-//
+//  Created by Chris Wu on 01/15/2016.
+//  Copyright (c) 2016 Chris Wu. All rights reserved.
 //
 
 import Foundation

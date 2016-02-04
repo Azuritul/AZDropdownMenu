@@ -11,11 +11,7 @@ AZDropdownMenu is a simple dropdown menu component that supports Swift.
 ## Screenshots
 Code used in the screencast are included in the bundled sample project.
 
-#### Menu with default setting (left aligned)
-![default_menu](https://cloud.githubusercontent.com/assets/879197/12356835/074e2c16-bbe8-11e5-8edf-0f5ed40ef7c9.gif)
-
-#### Customized(with icon)
-![custom_menu](https://cloud.githubusercontent.com/assets/879197/12356867/33af8e44-bbe8-11e5-8c5f-cd0e5f69733c.gif)
+![cast](https://cloud.githubusercontent.com/assets/879197/12817575/0734865e-cb96-11e5-8b90-d3e0cea18164.gif)
 
 ## Usage
 
@@ -76,8 +72,18 @@ Currently AZDropdownMenu can be customized with the following properties. More w
 - `overlayColor` Color for the background overlay. Default is black.
 - `menuSeparatorStyle` The separator of the menu. Default is single line.
 - `menuSeparatorColor` The color of the separator. Default is light gray.
+- `itemImagePosition` The position of image in the menu. Can be positioned before or after the text. Default is `.Prefix`.
+
 
 ## Version
+- 1.0.0
+   - Added `itemImagePosition` option, now can configure the icon position.
+   - Changed icon sets and its corresponding location in the sample project.
+   - Modified sample project's appearance a little bit.
+   - Modified sample project's structure.
+   - Added CHANGELOG.md
+- 0.6.1
+   - Update readme
 - 0.6.0
    - Now can use icons in the menu.
    - Added configuration options: `menuSeparatorColor`, `itemFont`
@@ -85,12 +91,17 @@ Currently AZDropdownMenu can be customized with the following properties. More w
    - Now can configure item's background color while tapped
 
 ## Credit
-- The icons used in the sample project are from [Glyphicons](http://www.glyphicons.com/).
+- Icon used in in the sample project is [Designed by Skydesign - Freepik.com](http://www.freepik.com/free-photos-vectors/people)
 
 ## Author
-
 Chris Wu (Azuritul), azuritul@gmail.com
 
-## License
+## Contribute
+1. Fork the repo
+2. Create your own branch with names that are easy to understand, e.g: `feature/xxx-feature`
+3. Commit changes
+4. Push branch to origin or whatever repo your name is: `git push origin feature/xxx-feature`
+5. Submit a pull request, compare against `develop` branch in the upstream repo and ensure there is no conflict between the two.
 
+## License
 AZDropdownMenu is available under the MIT license. See the LICENSE file for more info.

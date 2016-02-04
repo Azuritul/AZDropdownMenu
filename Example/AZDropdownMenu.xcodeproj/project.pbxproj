@@ -7,11 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		007EADE01C48C6A900568C34 /* glyphicons-14-beach-umbrella.png in Resources */ = {isa = PBXBuildFile; fileRef = 007EADDF1C48C6A900568C34 /* glyphicons-14-beach-umbrella.png */; };
-		007EADE31C48C6B300568C34 /* glyphicons-1-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = 007EADE11C48C6B300568C34 /* glyphicons-1-glass.png */; };
-		007EADE41C48C6B300568C34 /* glyphicons-2-leaf.png in Resources */ = {isa = PBXBuildFile; fileRef = 007EADE21C48C6B300568C34 /* glyphicons-2-leaf.png */; };
-		007EADE61C48C6DA00568C34 /* glyphicons-16-print.png in Resources */ = {isa = PBXBuildFile; fileRef = 007EADE51C48C6DA00568C34 /* glyphicons-16-print.png */; };
-		007EADE81C48C73400568C34 /* glyphicons-28-search.png in Resources */ = {isa = PBXBuildFile; fileRef = 007EADE71C48C73400568C34 /* glyphicons-28-search.png */; };
 		100D624629719B938CF49FEA /* Pods_AZDropdownMenu_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF783B83A7F3DB12B90530B8 /* Pods_AZDropdownMenu_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -33,11 +28,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		007EADDF1C48C6A900568C34 /* glyphicons-14-beach-umbrella.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glyphicons-14-beach-umbrella.png"; sourceTree = "<group>"; };
-		007EADE11C48C6B300568C34 /* glyphicons-1-glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glyphicons-1-glass.png"; sourceTree = "<group>"; };
-		007EADE21C48C6B300568C34 /* glyphicons-2-leaf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glyphicons-2-leaf.png"; sourceTree = "<group>"; };
-		007EADE51C48C6DA00568C34 /* glyphicons-16-print.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glyphicons-16-print.png"; sourceTree = "<group>"; };
-		007EADE71C48C73400568C34 /* glyphicons-28-search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glyphicons-28-search.png"; sourceTree = "<group>"; };
 		25AA6E24AC6E762EEB3A88E2 /* Pods-AZDropdownMenu_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AZDropdownMenu_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AZDropdownMenu_Example/Pods-AZDropdownMenu_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* AZDropdownMenu_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AZDropdownMenu_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -117,11 +107,6 @@
 		607FACD31AFB9204008FA782 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				007EADE11C48C6B300568C34 /* glyphicons-1-glass.png */,
-				007EADE21C48C6B300568C34 /* glyphicons-2-leaf.png */,
-				007EADDF1C48C6A900568C34 /* glyphicons-14-beach-umbrella.png */,
-				007EADE51C48C6DA00568C34 /* glyphicons-16-print.png */,
-				007EADE71C48C73400568C34 /* glyphicons-28-search.png */,
 				607FACD41AFB9204008FA782 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -261,13 +246,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				007EADE61C48C6DA00568C34 /* glyphicons-16-print.png in Resources */,
-				007EADE41C48C6B300568C34 /* glyphicons-2-leaf.png in Resources */,
-				007EADE81C48C73400568C34 /* glyphicons-28-search.png in Resources */,
-				007EADE31C48C6B300568C34 /* glyphicons-1-glass.png in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
-				007EADE01C48C6A900568C34 /* glyphicons-14-beach-umbrella.png in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -535,10 +515,7 @@
 			baseConfigurationReference = AC7EE8EC095998773D346FB5 /* Pods-AZDropdownMenu_Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -556,10 +533,7 @@
 			baseConfigurationReference = 977010A3F05BDAA9CB07722A /* Pods-AZDropdownMenu_Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
