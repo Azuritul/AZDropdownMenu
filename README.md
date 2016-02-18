@@ -13,9 +13,9 @@ Code used in the screencast are included in the bundled sample project.
 
 ![cast](https://cloud.githubusercontent.com/assets/879197/12817575/0734865e-cb96-11e5-8b90-d3e0cea18164.gif)
 
-## Usage
+## Demo Project
 
-To run the example project, clone the repo with `git clone https://github.com/Azuritul/AZDropdownMenu.git`, and run `pod install` from the Example directory first.
+To run the demo project, clone the repo with `git clone https://github.com/Azuritul/AZDropdownMenu.git`, and run `pod install` from the Example directory first.
 
 ## Requirements
 - iOS 8 or above
@@ -56,7 +56,7 @@ self?.navigationController?.pushViewController(controller, animated:true)
 #### Create menu with icons
 Pass in a AZDropdownMenuItemData in the initializer: `public init(dataSource:[AZDropdownMenuItemData])` and you are good to go.
 
-> Do take a look at the sample project in this repository to get more usage of the library.
+> Take a look at the sample project in this repository to get more usage of the library.
 
 ### Configurable options
 Currently AZDropdownMenu can be customized with the following properties. More will come in the future.
@@ -95,13 +95,6 @@ Currently AZDropdownMenu can be customized with the following properties. More w
 
 ## Author
 Chris Wu (Azuritul), azuritul@gmail.com
-
-## Contribute
-1. Fork the repo
-2. Create your own branch with names that are easy to understand, e.g: `feature/xxx-feature`
-3. Commit changes
-4. Push branch to origin or whatever repo your name is: `git push origin feature/xxx-feature`
-5. Submit a pull request, compare against `develop` branch in the upstream repo and ensure there is no conflict between the two.
 
 ## License
 AZDropdownMenu is available under the MIT license. See the LICENSE file for more info.
