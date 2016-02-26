@@ -40,16 +40,32 @@ let titles = ["Action 1", "Action 2", "Action 3"]
 ```
 Then pass the array to the initializer
 ```swift
-let menu = AZDropdownMenu(titles: leftTitles )
+let menu = AZDropdownMenu(titles: titles )
 ```
+
+Set up so that the `UIBarButtonItem` is associated with a function that shows the menu
+```
+let button = UIBarButtonItem(image: UIImage(named: "menu_image"), style: .Plain, target: self, action: "showDropdown")
+navigationItem.leftBarButtonItem = menuButton
+```
+
 Calling `public func showMenuFromView(view:UIView)` can then show the menu.
+```swift
+func showDropdown() {
+    if (self.menu?.isDescendantOfView(self.view) == true) {
+        self.menu?.hideMenu()
+    } else {
+        self.menu?.showMenuFromView(self.view)
+    }
+}
+```
 
 The handler `public var cellTapHandler : ((indexPath:NSIndexPath) -> Void)?` would be called
 when menu item is tapped. So place code in here to do whatever you want. For example
 
 ```swift
 menu.cellTapHandler = { [weak self] (indexPath: NSIndexPath) -> Void in
-self?.navigationController?.pushViewController(controller, animated:true)
+    self?.navigationController?.pushViewController(controller, animated:true)
 }
 ```
 
