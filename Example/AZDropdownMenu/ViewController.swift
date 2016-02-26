@@ -69,6 +69,7 @@ class ViewController: UIViewController {
     
 }
 
+/// Example controller that shows the use of menu with UIViewController
 class DemoViewController1 : UIViewController {
     
     var rightMenu: AZDropdownMenu?
@@ -97,23 +98,25 @@ class DemoViewController1 : UIViewController {
     }
 }
 
-class DemoViewController2 : UIViewController {
+/// Example that shows the use of menu with UITableViewController
+class DemoViewController2 : UITableViewController {
     
     var rightMenu: AZDropdownMenu?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = UIColor(red: 80/255, green: 70/255, blue: 66/255, alpha: 1.0)
+        title = "Demo 2"
+        view.backgroundColor = UIColor.whiteColor()
         
         let cancelButton = UIBarButtonItem(image: UIImage(named: "cancel"), style: .Plain, target: self, action: "dismiss")
-        let rightButton = UIBarButtonItem(image: UIImage(named: "options"), style: .Plain, target: self, action: "showRightDropdown")
+        let menuButton = UIBarButtonItem(image: UIImage(named: "options"), style: .Plain, target: self, action: "showRightDropdown")
         
         navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = rightButton
+        navigationItem.rightBarButtonItem = menuButton
         
-        title = "Demo 2"
         rightMenu = buildDummyCustomMenu()
+        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.tableView.dataSource = self
     }
     
     func showRightDropdown() {
@@ -123,6 +126,20 @@ class DemoViewController2 : UIViewController {
             self.rightMenu?.showMenuFromView(self.view)
         }
     }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 16
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCellWithIdentifier("cell") {
+
+            cell.textLabel?.text = "TestCell \(indexPath.row)"
+            return cell
+        }
+        return UITableViewCell()
+    }
+    
 }
 
 // MARK: - Extension for holding custom methods
@@ -161,7 +178,7 @@ extension UIViewController {
         menu.itemFontName = "Menlo-Bold"
         menu.itemColor = UIColor.whiteColor()
         menu.itemFontColor = UIColor(red: 55/255, green: 11/255, blue: 17/255, alpha: 1.0)
-        menu.overlayColor = UIColor.whiteColor()
+        menu.overlayColor = UIColor.blackColor()
         menu.overlayAlpha = 0.3
         menu.itemAlignment = .Center
         menu.itemImagePosition = .Postfix
@@ -184,26 +201,11 @@ extension UIViewController {
     
     private func createDummyDatasource() -> [AZDropdownMenuItemData] {
         var dataSource : [AZDropdownMenuItemData] = []
-        for index in 0 ..< 5 {
-            switch(index){
-            case 0:
-                let i = AZDropdownMenuItemData(title:"Action With Icon 1", icon:UIImage(imageLiteral: "1_a"))
-                dataSource.append(i)
-            case 1:
-                let i = AZDropdownMenuItemData(title:"Action With Icon 2", icon:UIImage(imageLiteral: "2_a"))
-                dataSource.append(i)
-            case 2:
-                let i = AZDropdownMenuItemData(title:"Action With Icon 3", icon:UIImage(imageLiteral: "3_a"))
-                dataSource.append(i)
-            case 3:
-                let i = AZDropdownMenuItemData(title:"Action With Icon 4", icon:UIImage(imageLiteral: "4_a"))
-                dataSource.append(i)
-            case 4:
-                let i = AZDropdownMenuItemData(title:"Action With Icon 5", icon:UIImage(imageLiteral: "5_a"))
-                dataSource.append(i)
-            default:break
-            }
-        }
+        dataSource.append(AZDropdownMenuItemData(title:"Action With Icon 1", icon:UIImage(imageLiteral: "1_a")))
+        dataSource.append(AZDropdownMenuItemData(title:"Action With Icon 2", icon:UIImage(imageLiteral: "2_a")))
+        dataSource.append(AZDropdownMenuItemData(title:"Action With Icon 3", icon:UIImage(imageLiteral: "3_a")))
+        dataSource.append(AZDropdownMenuItemData(title:"Action With Icon 4", icon:UIImage(imageLiteral: "4_a")))
+        dataSource.append(AZDropdownMenuItemData(title:"Action With Icon 5", icon:UIImage(imageLiteral: "5_a")))
         return dataSource
     }
     
