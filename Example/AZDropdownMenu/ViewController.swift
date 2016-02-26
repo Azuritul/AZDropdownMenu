@@ -140,6 +140,13 @@ class DemoViewController2 : UITableViewController {
         return UITableViewCell()
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let nextVC = UIViewController()
+        nextVC.view.backgroundColor = UIColor.whiteColor()
+        nextVC.title = "VC \(indexPath.row)"
+        self.navigationController?.showViewController(nextVC, sender: self)
+    }
+    
 }
 
 // MARK: - Extension for holding custom methods
