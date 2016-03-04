@@ -1,4 +1,0 @@
-swift:
-  enabled: false
-  config_file:.swiftlint.yml
-
