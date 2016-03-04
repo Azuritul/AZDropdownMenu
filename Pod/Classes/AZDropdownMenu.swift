@@ -9,22 +9,22 @@
 import UIKit
 
 public class AZDropdownMenu: UIView {
-    
+
     private let DROPDOWN_MENU_CELL_KEY : String = "MenuItemCell"
 
     /// The dark overlay behind the menu
     private let overlay:UIView = UIView()
     private var menuView: UITableView!
-    
+
     /// Array of titles for the menu
     private var titles = [String]()
-    
+
     /// Property to figure out if initial layout has been configured
     private var isSetUpFinished : Bool
 
     /// The handler used when menu item is tapped
     public var cellTapHandler : ((indexPath:NSIndexPath) -> Void)?
-    
+
     // MARK: - Configuration options
 
     /// Row height of the menu item
@@ -34,21 +34,21 @@ public class AZDropdownMenu: UIView {
             self.menuView.frame = menuFrame
         }
     }
-    
+
     /// The color of the menu item
     public var itemColor : UIColor = UIColor.whiteColor() {
         didSet {
             self.menuConfig?.itemColor = itemColor
         }
     }
- 
+
     /// The background color of the menu item while being tapped
     public var itemSelectionColor : UIColor = UIColor.lightGrayColor() {
         didSet {
             self.menuConfig?.itemSelectionColor = itemSelectionColor
         }
     }
-    
+
     /// The font of the item
     public var itemFontName : String = "Helvetica" {
         didSet {
@@ -62,21 +62,21 @@ public class AZDropdownMenu: UIView {
             self.menuConfig?.itemFontColor = itemFontColor
         }
     }
-    
+
     /// Font size of the menu item
     public var itemFontSize : CGFloat = 14.0 {
         didSet {
             self.menuConfig?.itemFontSize = itemFontSize
         }
     }
-    
+
     /// The alpha for the background overlay
     public var overlayAlpha : CGFloat = 0.5 {
         didSet {
             self.menuConfig?.overlayAlpha = self.overlayAlpha
         }
     }
-    
+
     /// Color for the background overlay
     public var overlayColor : UIColor = UIColor.blackColor() {
         didSet {
@@ -84,10 +84,10 @@ public class AZDropdownMenu: UIView {
             self.menuConfig?.overlayColor = self.overlayColor
         }
     }
-    
+
     public var menuSeparatorStyle:AZDropdownMenuSeperatorStyle = .Singleline {
         didSet {
-            switch(menuSeparatorStyle){
+            switch menuSeparatorStyle {
                 case .None:
                     self.menuView.separatorStyle = .None
                     self.menuConfig?.menuSeparatorStyle = .None
@@ -97,18 +97,18 @@ public class AZDropdownMenu: UIView {
             }
         }
     }
-    
+
     public var menuSeparatorColor:UIColor = UIColor.lightGrayColor() {
         didSet {
             self.menuConfig?.menuSeparatorColor = self.menuSeparatorColor
             self.menuView.separatorColor = self.menuSeparatorColor
         }
     }
-    
+
     /// The text alignment of the menu item
     public var itemAlignment : AZDropdownMenuItemAlignment = .Left {
         didSet {
-            switch(itemAlignment) {
+            switch itemAlignment {
                 case .Right:
                     self.menuConfig?.itemAlignment = .Right
                 case .Left:
@@ -118,11 +118,11 @@ public class AZDropdownMenu: UIView {
             }
         }
     }
-    
+
     /// The image position, default to .Prefix.  Image will be displayed after item's text if set to .Postfix
     public var itemImagePosition : AZDropdownMenuItemImagePosition = .Prefix {
         didSet {
-            switch(itemImagePosition) {
+            switch itemImagePosition {
             case .Prefix:
                 self.menuConfig?.itemImagePosition = .Prefix
             case .Postfix:
@@ -130,26 +130,26 @@ public class AZDropdownMenu: UIView {
             }
         }
     }
-    
+
     public var shouldDismissMenuOnDrag : Bool = false
-    
+
     private var calcMenuHeight : CGFloat {
         get {
             return CGFloat(itemHeight * itemDataSource.count)
         }
     }
-    
+
     private var menuHeight : CGFloat {
         get {
             return (calcMenuHeight > frame.size.height) ? frame.size.height : calcMenuHeight
         }
     }
-    
+
     private var initialMenuCenter : CGPoint = CGPointMake(0, 0)
     private var itemDataSource : [AZDropdownMenuItemData] = []
     private var reuseId : String?
     private var menuConfig : AZDropdownMenuConfig?
-    
+
     // MARK: - Initializer
     public init(titles:[String]) {
         self.isSetUpFinished = false
@@ -166,7 +166,7 @@ public class AZDropdownMenu: UIView {
         initOverlay()
         initMenu()
     }
-    
+
     public init(dataSource:[AZDropdownMenuItemData]) {
         self.isSetUpFinished = false
         self.itemDataSource = dataSource
@@ -174,16 +174,16 @@ public class AZDropdownMenu: UIView {
         super.init(frame:UIScreen.mainScreen().bounds)
         self.accessibilityIdentifier = "AZDropdownMenu"
         self.backgroundColor = UIColor.clearColor()
-        self.alpha = 0.95;
+        self.alpha = 0.95
         self.translatesAutoresizingMaskIntoConstraints = false
         initOverlay()
         initMenu()
     }
-    
+
     required public init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - View lifecycle
     override public func layoutSubviews() {
         if isSetUpFinished == false {
@@ -234,9 +234,9 @@ public class AZDropdownMenu: UIView {
 
         addConstraints([height, width])
         isSetUpFinished = true
-        
+
     }
-    
+
     private func animateOvelay(alphaValue: CGFloat, interval: Double, completionHandler: (() -> Void)? ) {
         UIView.animateWithDuration(
             interval,
@@ -249,22 +249,22 @@ public class AZDropdownMenu: UIView {
             }
         )
     }
-    
+
     func overlayTapped() {
         hideMenu()
     }
 
     //MARK: - Public methods to control the menu
-    
+
     /**
     Show menu
-    
+
     - parameter view: The view to be attached by the menu, ex. the controller's view
     */
-    public func showMenuFromView(view:UIView){
-        
+    public func showMenuFromView(view:UIView) {
+
         view.addSubview(self)
-        
+
         animateOvelay(overlayAlpha, interval: 0.4, completionHandler: nil)
         menuView.reloadData()
         UIView.animateWithDuration(
@@ -273,22 +273,22 @@ public class AZDropdownMenu: UIView {
             usingSpringWithDamping: 0.9,
             initialSpringVelocity: 0.6,
             options:[],
-            animations:{
+            animations: {
                 self.frame.origin.y = view.frame.origin.y
-                } , completion:{ (finished : Bool) -> Void in
+                }, completion: { (finished : Bool) -> Void in
                 self.initialMenuCenter = self.menuView.center
             }
         )
     }
-    
-    public func showMenuFromRect(rect:CGRect){
+
+    public func showMenuFromRect(rect:CGRect) {
         let window = UIApplication.sharedApplication().keyWindow!
-        
+
         let menuFrame = CGRectMake(0, rect.origin.y, frame.size.width, menuHeight)
         self.menuView.frame = menuFrame
-        
+
         window.addSubview(self)
-        
+
         animateOvelay(overlayAlpha, interval: 0.4, completionHandler: nil)
         menuView.reloadData()
         UIView.animateWithDuration(
@@ -297,14 +297,14 @@ public class AZDropdownMenu: UIView {
             usingSpringWithDamping: 0.9,
             initialSpringVelocity: 0.6,
             options:[],
-            animations:{
+            animations: {
                 self.frame.origin.y = rect.origin.y
-            } , completion:{ (finished : Bool) -> Void in
+            }, completion: { (finished : Bool) -> Void in
                 self.initialMenuCenter = self.menuView.center
             }
         )
     }
-    
+
     public func hideMenu() {
 
         animateOvelay(0.0, interval: 0.1, completionHandler: nil)
@@ -330,7 +330,7 @@ extension AZDropdownMenu: UITableViewDataSource {
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemDataSource.count
     }
-    
+
     func getCellByData() -> AZDropdownMenuBaseCell? {
         if let _ = itemDataSource.first?.icon {
             return AZDropdownMenuDefaultCell(reuseIdentifier: DROPDOWN_MENU_CELL_KEY, config: self.menuConfig!)
@@ -364,16 +364,16 @@ extension AZDropdownMenu: UITableViewDelegate {
         if let cell = tableView.cellForRowAtIndexPath(indexPath) {
             cell.backgroundColor = itemSelectionColor
         }
-        
+
         hideMenu()
     }
-    
+
     public func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         if let cell = tableView.cellForRowAtIndexPath(indexPath) {
             cell.backgroundColor = itemColor
         }
     }
-    
+
     public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return CGFloat(itemHeight)
     }
@@ -382,7 +382,7 @@ extension AZDropdownMenu: UITableViewDelegate {
 
 // MARK: - UIGestureRecognizerDelegate
 extension AZDropdownMenu: UIGestureRecognizerDelegate {
-    
+
     public func handlePan(gestureRecognizer: UIPanGestureRecognizer) {
         guard self.shouldDismissMenuOnDrag == true else {
             return
@@ -391,7 +391,7 @@ extension AZDropdownMenu: UIGestureRecognizerDelegate {
         if gestureRecognizer.isKindOfClass(UIPanGestureRecognizer.self) {
             if let touchedView = gestureRecognizer.view where touchedView == self.menuView {
                 let translationView = gestureRecognizer.translationInView(self)
-                switch (gestureRecognizer.state) {
+                switch gestureRecognizer.state {
                     case .Changed:
                         let center = touchedView.center
                         let targetPoint = center.y + translationView.y
@@ -414,15 +414,15 @@ extension AZDropdownMenu: UIGestureRecognizerDelegate {
  *  Menu's model object
  */
 public struct AZDropdownMenuItemData {
-    
+
     public let title:String
     public let icon:UIImage?
-    
-    public init(title:String){
+
+    public init(title:String) {
         self.title = title
         self.icon = nil
     }
-    
+
     public init(title:String, icon:UIImage) {
         self.title = title
         self.icon = icon
