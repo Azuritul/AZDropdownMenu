@@ -1,0 +1,10 @@
+
+disabled_rules:
+  - line_length
+  - colon
+
+
+line_length: 140
+
+file_length:
+  warning: 600
