@@ -190,6 +190,7 @@ extension UIViewController {
         menu.itemAlignment = .Center
         menu.itemImagePosition = .Postfix
         menu.menuSeparatorStyle = .None
+        menu.shouldDismissMenuOnDrag = true
         return menu
     }
     

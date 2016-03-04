@@ -22,6 +22,7 @@ struct AZDropdownMenuConfig {
     var menuSeparatorStyle : AZDropdownMenuSeperatorStyle = .Singleline
     var menuSeparatorColor : UIColor = UIColor.lightGrayColor()
     var itemImagePosition : AZDropdownMenuItemImagePosition = .Prefix
+    var shouldDismissMenuOnDrag : Bool = false
 }
 
 /**
@@ -42,15 +43,4 @@ public enum AZDropdownMenuSeperatorStyle {
  */
 public enum AZDropdownMenuItemImagePosition {
     case Prefix, Postfix
-}
-
-/**
- Tell the menu to dismiss in the following situation
- 
- - Drag:         Dismiss the menu when overlay is dragged
- - Touch:        Dismiss the menu when overlay is touched
- - DoNotDismiss: Do nothing
- */
-public enum AZDropdownMenuDismissMode {
-    case Drag, Touch, DoNotDismiss
 }

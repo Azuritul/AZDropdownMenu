@@ -1,5 +1,5 @@
 //
-//  AppDelegate.swift
+//  AZDropdownMenu.swift
 //  AZDropdownMenu
 //
 //  Created by Chris Wu on 01/05/2016.
@@ -131,6 +131,8 @@ public class AZDropdownMenu: UIView {
         }
     }
     
+    public var shouldDismissMenuOnDrag : Bool = false
+    
     private var calcMenuHeight : CGFloat {
         get {
             return CGFloat(itemHeight * itemDataSource.count)
@@ -143,6 +145,7 @@ public class AZDropdownMenu: UIView {
         }
     }
     
+    private var initialMenuCenter : CGPoint = CGPointMake(0, 0)
     private var itemDataSource : [AZDropdownMenuItemData] = []
     private var reuseId : String?
     private var menuConfig : AZDropdownMenuConfig?
@@ -197,6 +200,9 @@ public class AZDropdownMenu: UIView {
         overlay.userInteractionEnabled = true
         let touch : UIGestureRecognizer = UITapGestureRecognizer(target: self, action: "overlayTapped")
         overlay.addGestureRecognizer(touch)
+        let panGesture  = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        panGesture.delegate = self
+        overlay.addGestureRecognizer(panGesture)
         addSubview(overlay)
     }
 
@@ -215,6 +221,9 @@ public class AZDropdownMenu: UIView {
         menuView.scrollEnabled = false
         menuView.accessibilityIdentifier = "MENU"
         menuView.separatorColor = menuConfig?.menuSeparatorColor
+        let panGesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        panGesture.delegate = self
+        menuView.addGestureRecognizer(panGesture)
         addSubview(menuView)
     }
 
@@ -267,7 +276,7 @@ public class AZDropdownMenu: UIView {
             animations:{
                 self.frame.origin.y = view.frame.origin.y
                 } , completion:{ (finished : Bool) -> Void in
-
+                self.initialMenuCenter = self.menuView.center
             }
         )
     }
@@ -283,6 +292,7 @@ public class AZDropdownMenu: UIView {
                 self.frame.origin.y = -1200
             },
             completion: { (finished: Bool) -> Void in
+                self.menuView.center = self.initialMenuCenter
                 self.removeFromSuperview()
             }
         )
@@ -346,19 +356,33 @@ extension AZDropdownMenu: UITableViewDelegate {
 
 }
 
-struct AZDropdownMenuConfig {
+// MARK: - UIGestureRecognizerDelegate
+extension AZDropdownMenu: UIGestureRecognizerDelegate {
+    
+    public func handlePan(gestureRecognizer: UIPanGestureRecognizer) {
+        guard self.shouldDismissMenuOnDrag == true else {
+            return
+        }
 
-    var itemColor : UIColor = UIColor.whiteColor()
-    var itemSelectionColor : UIColor = UIColor.lightGrayColor()
-    var itemAlignment : AZDropdownMenuItemAlignment = .Left
-    var itemFontColor : UIColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
-    var itemFontSize : CGFloat = 14.0
-    var itemFont : String = "Helvetica"
-    var overlayAlpha : CGFloat = 0.5
-    var overlayColor : UIColor = UIColor.blackColor()
-    var menuSeparatorStyle : AZDropdownMenuSeperatorStyle = .Singleline
-    var menuSeparatorColor : UIColor = UIColor.lightGrayColor()
-    var itemImagePosition : AZDropdownMenuItemImagePosition = .Prefix
+        if gestureRecognizer.isKindOfClass(UIPanGestureRecognizer.self) {
+            if let touchedView = gestureRecognizer.view where touchedView == self.menuView {
+                let translationView = gestureRecognizer.translationInView(self)
+                switch (gestureRecognizer.state) {
+                    case .Changed:
+                        let center = touchedView.center
+                        let targetPoint = center.y + translationView.y
+                        let newLocation = targetPoint < initialMenuCenter.y ? targetPoint : initialMenuCenter.y
+                        touchedView.center = CGPointMake(center.x, newLocation)
+                        gestureRecognizer.setTranslation(CGPointMake(0, 0), inView: touchedView)
+                    case .Ended:
+                        if touchedView.center.y < initialMenuCenter.y {
+                            hideMenu()
+                        }
+                    default:break
+                }
+            }
+        }
+    }
 }
 
 
@@ -379,24 +403,4 @@ public struct AZDropdownMenuItemData {
         self.title = title
         self.icon = icon
     }
-}
-
-/**
- The separator style of the menu
- 
- - Singleline: A solid single line
- - None:       No Separator
- */
-public enum AZDropdownMenuSeperatorStyle {
-    case Singleline, None
-}
-
-/**
- The position of image icon in the menu
- 
- - Prefix:  Place icon before item title
- - Postfix: Place icon after item title
- */
-public enum AZDropdownMenuItemImagePosition {
-    case Prefix, Postfix
 }
