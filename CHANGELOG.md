@@ -1,6 +1,6 @@
 #### 1.1.0 Release Notes
    - Added `shouldDismissMenuOnDrag` option, menu would be dismissed on drag if this option is enabled
-   - Modified the sample project with an example using `UITableViewController`.
+   - Modified the sample project with an example using `UITableView`.
    - Added gesture handler for the menu.
    - Extract config struct to a separate file
    - Update readme.

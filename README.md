@@ -92,6 +92,12 @@ Currently AZDropdownMenu can be customized with the following properties. More w
 - `shouldDismissMenuOnDrag` If set to true, menu would be dismissed on drag. Default value is `false`.
 
 ## Version
+- 1.1.0
+   - Added `shouldDismissMenuOnDrag` option, menu would be dismissed on drag if this option is enabled
+   - Modified the sample project with an example using `UITableView`.
+   - Added gesture handler for the menu.
+   - Extract config struct to a separate file
+   - Update readme.
 - 1.0.0
    - Added `itemImagePosition` option, now can configure the icon position.
    - Changed icon sets and its corresponding location in the sample project.

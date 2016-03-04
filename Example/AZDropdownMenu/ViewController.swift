@@ -99,9 +99,10 @@ class DemoViewController1 : UIViewController {
 }
 
 /// Example that shows the use of menu with UITableViewController
-class DemoViewController2 : UITableViewController {
+class DemoViewController2 : UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var rightMenu: AZDropdownMenu?
+    var tableView: UITableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,13 +111,15 @@ class DemoViewController2 : UITableViewController {
         
         let cancelButton = UIBarButtonItem(image: UIImage(named: "cancel"), style: .Plain, target: self, action: "dismiss")
         let menuButton = UIBarButtonItem(image: UIImage(named: "options"), style: .Plain, target: self, action: "showRightDropdown")
-        
+        tableView.frame = CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen().bounds), CGRectGetHeight(UIScreen.mainScreen().bounds))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = menuButton
         
         rightMenu = buildDummyCustomMenu()
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.tableView.dataSource = self
+        self.tableView.delegate = self
+        self.view.addSubview(self.tableView)
     }
     
     func showRightDropdown() {
@@ -126,12 +129,12 @@ class DemoViewController2 : UITableViewController {
             self.rightMenu?.showMenuFromView(self.view)
         }
     }
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 16
     }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier("cell") {
 
             cell.textLabel?.text = "TestCell \(indexPath.row)"
@@ -139,8 +142,9 @@ class DemoViewController2 : UITableViewController {
         }
         return UITableViewCell()
     }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let nextVC = UIViewController()
         nextVC.view.backgroundColor = UIColor.whiteColor()
         nextVC.title = "VC \(indexPath.row)"

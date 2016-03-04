@@ -281,6 +281,30 @@ public class AZDropdownMenu: UIView {
         )
     }
     
+    public func showMenuFromRect(rect:CGRect){
+        let window = UIApplication.sharedApplication().keyWindow!
+        
+        let menuFrame = CGRectMake(0, rect.origin.y, frame.size.width, menuHeight)
+        self.menuView.frame = menuFrame
+        
+        window.addSubview(self)
+        
+        animateOvelay(overlayAlpha, interval: 0.4, completionHandler: nil)
+        menuView.reloadData()
+        UIView.animateWithDuration(
+            0.2,
+            delay:0,
+            usingSpringWithDamping: 0.9,
+            initialSpringVelocity: 0.6,
+            options:[],
+            animations:{
+                self.frame.origin.y = rect.origin.y
+            } , completion:{ (finished : Bool) -> Void in
+                self.initialMenuCenter = self.menuView.center
+            }
+        )
+    }
+    
     public func hideMenu() {
 
         animateOvelay(0.0, interval: 0.1, completionHandler: nil)
