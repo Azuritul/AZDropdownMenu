@@ -40,7 +40,7 @@ let titles = ["Action 1", "Action 2", "Action 3"]
 ```
 Then pass the array to the initializer
 ```swift
-let menu = AZDropdownMenu(titles: titles )
+let menu = AZDropdownMenu(titles: titles)
 ```
 
 Set up so that the `UIBarButtonItem` is associated with a function that shows the menu
@@ -89,7 +89,7 @@ Currently AZDropdownMenu can be customized with the following properties. More w
 - `menuSeparatorStyle` The separator of the menu. Default is single line.
 - `menuSeparatorColor` The color of the separator. Default is light gray.
 - `itemImagePosition` The position of image in the menu. Can be positioned before or after the text. Default is `.Prefix`.
-
+- `shouldDismissMenuOnDrag` If set to true, menu would be dismissed on drag. Default value is `false`.
 
 ## Version
 - 1.0.0

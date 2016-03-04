@@ -1,3 +1,10 @@
+#### 1.1.0 Release Notes
+   - Added `shouldDismissMenuOnDrag` option, menu would be dismissed on drag if this option is enabled
+   - Modified the sample project with an example using `UITableViewController`.
+   - Added gesture handler for the menu.
+   - Extract config struct to a separate file
+   - Update readme.
+
 #### 1.0.0 Release Notes
    - Added `itemImagePosition` option, now can configure the icon position.
    - Changed icon sets and its corresponding location in the sample project.
