@@ -44,12 +44,12 @@
 
 <p>Code used in the screencast are included in the bundled sample project.</p>
 
-<p><img src="https://cloud.githubusercontent.com/assets/879197/12817575/0734865e-cb96-11e5-8b90-d3e0cea18164.gif" alt="cast"></p>
+<p><img src="https://cloud.githubusercontent.com/assets/879197/13528338/455c738a-e250-11e5-8671-312aa58a63e1.gif" alt="screencast"></p>
 
 <h2>
-<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+<a id="demo-project" class="anchor" href="#demo-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo Project</h2>
 
-<p>To run the example project, clone the repo with <code>git clone https://github.com/Azuritul/AZDropdownMenu.git</code>, and run <code>pod install</code> from the Example directory first.</p>
+<p>To run the demo project, clone the repo with <code>git clone https://github.com/Azuritul/AZDropdownMenu.git</code>, and run <code>pod install</code> from the Example directory first.</p>
 
 <h2>
 <a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirements</h2>
@@ -70,7 +70,7 @@ it, simply add the following line to your Podfile:</p>
 pod <span class="pl-s"><span class="pl-pds">'</span>AZDropdownMenu<span class="pl-pds">'</span></span></pre></div>
 
 <h2>
-<a id="usage-1" class="anchor" href="#usage-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
 
 <p>Declare an array of texts that are served as the item in the menu.</p>
 
@@ -78,15 +78,29 @@ pod <span class="pl-s"><span class="pl-pds">'</span>AZDropdownMenu<span class="p
 
 <p>Then pass the array to the initializer</p>
 
-<div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> menu <span class="pl-k">=</span> AZDropdownMenu(titles: leftTitles )</pre></div>
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> menu <span class="pl-k">=</span> AZDropdownMenu(titles: titles)</pre></div>
+
+<p>Set up so that the <code>UIBarButtonItem</code> is associated with a function that shows the menu</p>
+
+<pre><code>let button = UIBarButtonItem(image: UIImage(named: "menu_image"), style: .Plain, target: self, action: "showDropdown")
+navigationItem.leftBarButtonItem = menuButton
+</code></pre>
 
 <p>Calling <code>public func showMenuFromView(view:UIView)</code> can then show the menu.</p>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">func</span> <span class="pl-en">showDropdown</span>() {
+    <span class="pl-k">if</span> (<span class="pl-k">self</span><span class="pl-k">.</span>menu?<span class="pl-k">.</span>isDescendantOfView(<span class="pl-k">self</span><span class="pl-k">.</span>view) <span class="pl-k">==</span> <span class="pl-c1">true</span>) {
+        <span class="pl-k">self</span><span class="pl-k">.</span>menu?<span class="pl-k">.</span>hideMenu()
+    } <span class="pl-k">else</span> {
+        <span class="pl-k">self</span><span class="pl-k">.</span>menu?<span class="pl-k">.</span>showMenuFromView(<span class="pl-k">self</span><span class="pl-k">.</span>view)
+    }
+}</pre></div>
 
 <p>The handler <code>public var cellTapHandler : ((indexPath:NSIndexPath) -&gt; Void)?</code> would be called
 when menu item is tapped. So place code in here to do whatever you want. For example</p>
 
 <div class="highlight highlight-source-swift"><pre>menu<span class="pl-k">.</span>cellTapHandler <span class="pl-k">=</span> { [<span class="pl-k">weak</span> <span class="pl-k">self</span>] (indexPath: NSIndexPath) <span class="pl-k">-&gt;</span> <span class="pl-c1">Void</span> <span class="pl-k">in</span>
-<span class="pl-k">self</span>?<span class="pl-k">.</span>navigationController?<span class="pl-k">.</span>pushViewController(controller, animated:<span class="pl-c1">true</span>)
+    <span class="pl-k">self</span>?<span class="pl-k">.</span>navigationController?<span class="pl-k">.</span>pushViewController(controller, animated:<span class="pl-c1">true</span>)
 }</pre></div>
 
 <h4>
@@ -95,7 +109,7 @@ when menu item is tapped. So place code in here to do whatever you want. For exa
 <p>Pass in a AZDropdownMenuItemData in the initializer: <code>public init(dataSource:[AZDropdownMenuItemData])</code> and you are good to go.</p>
 
 <blockquote>
-<p>Do take a look at the sample project in this repository to get more usage of the library.</p>
+<p>Take a look at the sample project in this repository to get more usage of the library.</p>
 </blockquote>
 
 <h3>
@@ -128,12 +142,24 @@ when menu item is tapped. So place code in here to do whatever you want. For exa
 <code>menuSeparatorColor</code> The color of the separator. Default is light gray.</li>
 <li>
 <code>itemImagePosition</code> The position of image in the menu. Can be positioned before or after the text. Default is <code>.Prefix</code>.</li>
+<li>
+<code>shouldDismissMenuOnDrag</code> If set to true, menu would be dismissed on drag. Default value is <code>false</code>.</li>
 </ul>
 
 <h2>
 <a id="version" class="anchor" href="#version" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Version</h2>
 
 <ul>
+<li>1.1.0
+
+<ul>
+<li>Added <code>shouldDismissMenuOnDrag</code> option, menu would be dismissed on drag if this option is enabled</li>
+<li>Modified the sample project with an example using <code>UITableView</code>.</li>
+<li>Added gesture handler for the menu.</li>
+<li>Extract config struct to a separate file</li>
+<li>Update readme.</li>
+</ul>
+</li>
 <li>1.0.0
 
 <ul>
@@ -178,19 +204,6 @@ when menu item is tapped. So place code in here to do whatever you want. For exa
 <a id="author" class="anchor" href="#author" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Author</h2>
 
 <p>Chris Wu (Azuritul), <a href="mailto:azuritul@gmail.com">azuritul@gmail.com</a></p>
-
-<h2>
-<a id="contribute" class="anchor" href="#contribute" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contribute</h2>
-
-<ol>
-<li>Fork the repo</li>
-<li>Create your own branch with names that are easy to understand, e.g: <code>feature/xxx-feature</code>
-</li>
-<li>Commit changes</li>
-<li>Push branch to origin or whatever repo your name is: <code>git push origin feature/xxx-feature</code>
-</li>
-<li>Submit a pull request, compare against <code>develop</code> branch in the upstream repo and ensure there is no conflict between the two.</li>
-</ol>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
