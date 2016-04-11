@@ -1,3 +1,6 @@
+#### 1.1.1 Release Notes
+   - Update for Swift 2.2
+   
 #### 1.1.0 Release Notes
    - Added `shouldDismissMenuOnDrag` option, menu would be dismissed on drag if this option is enabled
    - Modified the sample project with an example using `UITableView`.
