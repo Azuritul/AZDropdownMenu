@@ -198,9 +198,9 @@ public class AZDropdownMenu: UIView {
         overlay.accessibilityIdentifier = "OVERLAY"
         overlay.alpha = 0
         overlay.userInteractionEnabled = true
-        let touch : UIGestureRecognizer = UITapGestureRecognizer(target: self, action: "overlayTapped")
+        let touch : UIGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AZDropdownMenu.overlayTapped))
         overlay.addGestureRecognizer(touch)
-        let panGesture  = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        let panGesture  = UIPanGestureRecognizer(target: self, action: #selector(AZDropdownMenu.handlePan(_:)))
         panGesture.delegate = self
         overlay.addGestureRecognizer(panGesture)
         addSubview(overlay)
@@ -221,7 +221,7 @@ public class AZDropdownMenu: UIView {
         menuView.scrollEnabled = false
         menuView.accessibilityIdentifier = "MENU"
         menuView.separatorColor = menuConfig?.menuSeparatorColor
-        let panGesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(AZDropdownMenu.handlePan(_:)))
         panGesture.delegate = self
         menuView.addGestureRecognizer(panGesture)
         addSubview(menuView)

@@ -22,7 +22,7 @@ class ViewController: UIViewController {
 
         /// Add DemoButton 1
         let demoButton1 = buildButton("Demo 1")
-        demoButton1.addTarget(self, action: "onDemo1Tapped", forControlEvents: .TouchUpInside)
+        demoButton1.addTarget(self, action: #selector(ViewController.onDemo1Tapped), forControlEvents: .TouchUpInside)
         view.addSubview(demoButton1)
 
         view.addConstraint(NSLayoutConstraint(item: demoButton1, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1, constant: 0))
@@ -30,7 +30,7 @@ class ViewController: UIViewController {
 
         ///  Add DemoButton 2
         let demoButton2 = buildButton("Demo 2")
-        demoButton2.addTarget(self, action: "onDemo2Tapped", forControlEvents: .TouchUpInside)
+        demoButton2.addTarget(self, action: #selector(ViewController.onDemo2Tapped), forControlEvents: .TouchUpInside)
         view.addSubview(demoButton2)
 
         view.addConstraint(NSLayoutConstraint(item: demoButton2, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1, constant: 0))
@@ -79,8 +79,8 @@ class DemoViewController1: UIViewController {
 
         view.backgroundColor = UIColor(red: 80/255, green: 70/255, blue: 66/255, alpha: 1.0)
 
-        let cancelButton = UIBarButtonItem(image: UIImage(named: "cancel"), style: .Plain, target: self, action: "dismiss")
-        let rightButton = UIBarButtonItem(image: UIImage(named: "options"), style: .Plain, target: self, action: "showRightDropdown")
+        let cancelButton = UIBarButtonItem(image: UIImage(named: "cancel"), style: .Plain, target: self, action: #selector(UIViewController.dismiss))
+        let rightButton = UIBarButtonItem(image: UIImage(named: "options"), style: .Plain, target: self, action: #selector(DemoViewController1.showRightDropdown))
 
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = rightButton
@@ -109,8 +109,8 @@ class DemoViewController2: UIViewController, UITableViewDataSource, UITableViewD
         title = "Demo 2"
         view.backgroundColor = UIColor.whiteColor()
 
-        let cancelButton = UIBarButtonItem(image: UIImage(named: "cancel"), style: .Plain, target: self, action: "dismiss")
-        let menuButton = UIBarButtonItem(image: UIImage(named: "options"), style: .Plain, target: self, action: "showRightDropdown")
+        let cancelButton = UIBarButtonItem(image: UIImage(named: "cancel"), style: .Plain, target: self, action: #selector(UIViewController.dismiss))
+        let menuButton = UIBarButtonItem(image: UIImage(named: "options"), style: .Plain, target: self, action: #selector(DemoViewController1.showRightDropdown))
         tableView.frame = CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen().bounds), CGRectGetHeight(UIScreen.mainScreen().bounds))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = menuButton
