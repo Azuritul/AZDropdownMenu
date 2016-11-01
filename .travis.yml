@@ -9,6 +9,7 @@ podfile: Example/Podfile
 before_install:
  - gem install xcpretty
  - gem install cocoapods  -v '0.39.0' # Since Travis is not always on latest version
+ - pod repo update
  - pod install --project-directory=Example
 script:
 #- set -o pipefail && xcodebuild test -workspace Example/AZDropdownMenu.xcworkspace -scheme AZDropdownMenu-Example -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty
