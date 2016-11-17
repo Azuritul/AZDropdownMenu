@@ -4,7 +4,7 @@
 [![Version](https://img.shields.io/cocoapods/v/AZDropdownMenu.svg?style=flat)](http://cocoapods.org/pods/AZDropdownMenu)
 [![License](https://img.shields.io/cocoapods/l/AZDropdownMenu.svg?style=flat)](http://cocoapods.org/pods/AZDropdownMenu)
 [![Platform](https://img.shields.io/cocoapods/p/AZDropdownMenu.svg?style=flat)](http://cocoapods.org/pods/AZDropdownMenu)
-[![Language](https://img.shields.io/badge/swift-2.2-orange.svg)](http://swift.org)
+[![Language](https://img.shields.io/badge/swift-3-orange.svg)](http://swift.org)
 
 AZDropdownMenu is a simple dropdown menu component that supports Swift.
 
@@ -19,8 +19,8 @@ To run the demo project, clone the repo with `git clone https://github.com/Azuri
 
 ## Requirements
 - iOS 8 or above
-- Xcode 7 or above
-- Swift 2.2
+- Xcode 8 or above
+- Swift 3
 
 ## Installation
 
@@ -92,6 +92,9 @@ Currently AZDropdownMenu can be customized with the following properties. More w
 - `shouldDismissMenuOnDrag` If set to true, menu would be dismissed on drag. Default value is `false`.
 
 ## Version
+- 1.1.2
+   - Update for Swift 3 syntax
+
 - 1.1.1
    - Update for Swift 2.2's #selector syntax
 
