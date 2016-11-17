@@ -14,19 +14,19 @@ public class AZDropdownMenuBaseCell : UITableViewCell, AZDropdownMenuCellProtoco
         self.textLabel?.text = data.title
     }
 
-    func configureStyle(config: AZDropdownMenuConfig) {
-        self.selectionStyle = .None
+    func configureStyle(configuration config: AZDropdownMenuConfig) {
+        self.selectionStyle = .none
         self.backgroundColor = config.itemColor
         self.textLabel?.textColor = config.itemFontColor
         self.textLabel?.font = UIFont(name: config.itemFont, size: config.itemFontSize)
 
         switch config.itemAlignment {
         case .Left:
-            self.textLabel?.textAlignment = .Left
+            self.textLabel?.textAlignment = .left
         case .Right:
-            self.textLabel?.textAlignment = .Right
+            self.textLabel?.textAlignment = .right
         case .Center:
-            self.textLabel?.textAlignment = .Center
+            self.textLabel?.textAlignment = .center
         }
     }
 }

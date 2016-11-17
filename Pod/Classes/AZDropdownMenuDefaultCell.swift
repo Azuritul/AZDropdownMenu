@@ -23,8 +23,8 @@ public final class AZDropdownMenuDefaultCell: AZDropdownMenuBaseCell {
 
     init(reuseIdentifier: String?, config: AZDropdownMenuConfig) {
         self.config = config
-        super.init(style: .Default, reuseIdentifier: reuseIdentifier)
-        selectionStyle = .None
+        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
 
         container.translatesAutoresizingMaskIntoConstraints = false
         innerContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +41,7 @@ public final class AZDropdownMenuDefaultCell: AZDropdownMenuBaseCell {
 
     init(style: UITableViewCellStyle, reuseIdentifier: String?, config: AZDropdownMenuConfig) {
         self.config = config
-        super.init(style:.Default, reuseIdentifier: reuseIdentifier)
+        super.init(style:.default, reuseIdentifier: reuseIdentifier)
     }
     
     public override func updateConstraints() {
@@ -56,9 +56,9 @@ public final class AZDropdownMenuDefaultCell: AZDropdownMenuBaseCell {
     private func constraintsForLeftAlignment(viewBindings: [String:AnyObject]) -> [NSLayoutConstraint] {
         switch config.itemImagePosition {
             case .Prefix:
-                return NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[icon]-10-[title]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
+                return NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[icon]-10-[title]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
             case .Postfix:
-                return NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[title]-10-[icon]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
+                return NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[title]-10-[icon]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
         }
         
     }
@@ -66,9 +66,9 @@ public final class AZDropdownMenuDefaultCell: AZDropdownMenuBaseCell {
     private func constraintsForRightAlignment(viewBindings: [String:AnyObject]) -> [NSLayoutConstraint] {
         switch config.itemImagePosition {
         case .Prefix:
-            return NSLayoutConstraint.constraintsWithVisualFormat("H:[title]-10-[icon]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
+            return NSLayoutConstraint.constraints(withVisualFormat: "H:[title]-10-[icon]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
         case .Postfix:
-            return NSLayoutConstraint.constraintsWithVisualFormat("H:[title]-10-[icon]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
+            return NSLayoutConstraint.constraints(withVisualFormat: "H:[title]-10-[icon]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
         }
         
         
@@ -78,13 +78,13 @@ public final class AZDropdownMenuDefaultCell: AZDropdownMenuBaseCell {
         var constraints:[NSLayoutConstraint]
         switch config.itemImagePosition {
             case .Prefix:
-                constraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[icon]-10-[title]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
+                constraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[icon]-10-[title]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
             case .Postfix:
-                constraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[title]-10-[icon]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
+                constraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[title]-10-[icon]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
         }
         
         
-        let innerCenterX = NSLayoutConstraint(item: titleLabel, attribute: .CenterX, relatedBy: .Equal, toItem: innerContainer, attribute: .CenterX, multiplier: 1, constant: 0)
+        let innerCenterX = NSLayoutConstraint(item: titleLabel, attribute: .centerX, relatedBy: .equal, toItem: innerContainer, attribute: .centerX, multiplier: 1, constant: 0)
         constraints.append(innerCenterX)
         return constraints
     }
@@ -98,23 +98,23 @@ public final class AZDropdownMenuDefaultCell: AZDropdownMenuBaseCell {
             var constraintsForAlignment = [NSLayoutConstraint]()
             switch (self.config.itemAlignment) {
             case .Left:
-                constraintsForAlignment = constraintsForLeftAlignment(bindings)
+                constraintsForAlignment = constraintsForLeftAlignment(viewBindings: bindings)
             case .Right:
-                constraintsForAlignment = constraintsForRightAlignment(bindings)
+                constraintsForAlignment = constraintsForRightAlignment(viewBindings: bindings)
             case .Center:
-                constraintsForAlignment = constraintsForCenterAlignment(bindings)
+                constraintsForAlignment = constraintsForCenterAlignment(viewBindings: bindings)
             }
 
             /// Icon and title should be always vertically centered
-            let iconCenterY = NSLayoutConstraint(item: iconView, attribute: .CenterY, relatedBy: .Equal, toItem: innerContainer, attribute: .CenterY, multiplier: 1, constant: 0)
-            let titleCenterY = NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal, toItem: innerContainer, attribute: .CenterY, multiplier: 1, constant: 0)
+            let iconCenterY = NSLayoutConstraint(item: iconView, attribute: .centerY, relatedBy: .equal, toItem: innerContainer, attribute: .centerY, multiplier: 1, constant: 0)
+            let titleCenterY = NSLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: innerContainer, attribute: .centerY, multiplier: 1, constant: 0)
 
-            let innerContainerHAlignment = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[inner]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings)
-            let innerContainerVAlignment = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[inner]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings)
+            let innerContainerHAlignment = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[inner]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings)
+            let innerContainerVAlignment = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[inner]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings)
 
             /// Constraints for outermost container, should always stretch to superview
-            let width = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[container]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings)
-            let height = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[container]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings)
+            let width = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[container]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings)
+            let height = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[container]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings)
 
             innerContainer.addConstraints(constraintsForAlignment)
             innerContainer.addConstraint(iconCenterY)
@@ -128,26 +128,26 @@ public final class AZDropdownMenuDefaultCell: AZDropdownMenuBaseCell {
         }
     }
 
-    public override func configureData(item: AZDropdownMenuItemData) {
+    public override func configureData(data item: AZDropdownMenuItemData) {
         self.titleLabel.text = item.title
         if let icon = item.icon {
             self.iconView.image = icon
         }
     }
 
-    override func configureStyle(config: AZDropdownMenuConfig) {
-        self.selectionStyle = .None
+    override func configureStyle(configuration config: AZDropdownMenuConfig) {
+        self.selectionStyle = .none
         self.backgroundColor = config.itemColor
         self.titleLabel.textColor = config.itemFontColor
         self.titleLabel.font = UIFont(name: config.itemFont, size: config.itemFontSize)
 
         switch config.itemAlignment {
         case .Left:
-            self.titleLabel.textAlignment = .Left
+            self.titleLabel.textAlignment = .left
         case .Right:
-            self.titleLabel.textAlignment = .Right
+            self.titleLabel.textAlignment = .right
         case .Center:
-            self.titleLabel.textAlignment = .Center
+            self.titleLabel.textAlignment = .center
         }
     }
     
