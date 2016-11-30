@@ -11,16 +11,16 @@ import Foundation
 
 struct AZDropdownMenuConfig {
     
-    var itemColor : UIColor = UIColor.whiteColor()
-    var itemSelectionColor : UIColor = UIColor.lightGrayColor()
+    var itemColor : UIColor = UIColor.white
+    var itemSelectionColor : UIColor = UIColor.lightGray
     var itemAlignment : AZDropdownMenuItemAlignment = .Left
     var itemFontColor : UIColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
     var itemFontSize : CGFloat = 14.0
     var itemFont : String = "Helvetica"
     var overlayAlpha : CGFloat = 0.5
-    var overlayColor : UIColor = UIColor.blackColor()
+    var overlayColor : UIColor = UIColor.black
     var menuSeparatorStyle : AZDropdownMenuSeperatorStyle = .Singleline
-    var menuSeparatorColor : UIColor = UIColor.lightGrayColor()
+    var menuSeparatorColor : UIColor = UIColor.lightGray
     var itemImagePosition : AZDropdownMenuItemImagePosition = .Prefix
     var shouldDismissMenuOnDrag : Bool = false
 }
