@@ -1,16 +1,10 @@
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
-target 'AZDropdownMenu_Example', :exclusive => true do
+target 'AZDropdownMenu_Example' do
   pod "AZDropdownMenu", :path => "../"
 end
 
-target 'AZDropdownMenu_Tests', :exclusive => true do
+target 'AZDropdownMenu_Tests' do
   pod "AZDropdownMenu", :path => "../"
-
-    #  pod 'Quick', '~> 0.8.0'
-    #  pod 'Nimble', '3.0.0'
-    #  pod 'FBSnapshotTestCase'
-    #  pod 'Nimble-Snapshots'
-
 end
