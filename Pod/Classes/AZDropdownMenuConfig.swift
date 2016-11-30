@@ -13,15 +13,15 @@ struct AZDropdownMenuConfig {
     
     var itemColor : UIColor = UIColor.white
     var itemSelectionColor : UIColor = UIColor.lightGray
-    var itemAlignment : AZDropdownMenuItemAlignment = .Left
+    var itemAlignment : AZDropdownMenuItemAlignment = .left
     var itemFontColor : UIColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
     var itemFontSize : CGFloat = 14.0
     var itemFont : String = "Helvetica"
     var overlayAlpha : CGFloat = 0.5
     var overlayColor : UIColor = UIColor.black
-    var menuSeparatorStyle : AZDropdownMenuSeperatorStyle = .Singleline
+    var menuSeparatorStyle : AZDropdownMenuSeperatorStyle = .singleline
     var menuSeparatorColor : UIColor = UIColor.lightGray
-    var itemImagePosition : AZDropdownMenuItemImagePosition = .Prefix
+    var itemImagePosition : AZDropdownMenuItemImagePosition = .prefix
     var shouldDismissMenuOnDrag : Bool = false
 }
 
@@ -32,7 +32,7 @@ struct AZDropdownMenuConfig {
  - None:       No Separator
  */
 public enum AZDropdownMenuSeperatorStyle {
-    case Singleline, None
+    case singleline, none
 }
 
 /**
@@ -42,5 +42,5 @@ public enum AZDropdownMenuSeperatorStyle {
  - Postfix: Place icon after item title
  */
 public enum AZDropdownMenuItemImagePosition {
-    case Prefix, Postfix
+    case prefix, postfix
 }

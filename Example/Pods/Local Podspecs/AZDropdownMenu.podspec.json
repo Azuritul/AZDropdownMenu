@@ -1,17 +1,18 @@
 {
   "name": "AZDropdownMenu",
-  "version": "0.1.0",
-  "summary": "A short description of AZDropdownMenu.",
-  "description": "",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/AZDropdownMenu",
+  "version": "1.1.2",
+  "summary": "A simple dropdown menu for iOS written in Swift!",
+  "description": "AZDropdownMenu is a simple dropdown menu component that supports Swift.",
+  "homepage": "https://github.com/Azuritul/AZDropdownMenu",
   "license": "MIT",
   "authors": {
     "Azuritul": "azuritul@gmail.com"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/AZDropdownMenu.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/Azuritul/AZDropdownMenu.git",
+    "tag": "1.1.2"
   },
+  "social_media_url": "https://twitter.com/azuritul",
   "platforms": {
     "ios": "8.0"
   },
