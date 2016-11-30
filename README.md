@@ -1,6 +1,6 @@
 # AZDropdownMenu
 
-[![CI Status](http://img.shields.io/travis/Azuritul/AZDropdownMenu.svg?style=flat)](https://travis-ci.org/Azuritul/AZDropdownMenu)
+[![Build Status](https://www.bitrise.io/app/1dcd88cfb9a0f14e.svg?token=-Rs7yi0wHvWCFAZzx977JA)](https://www.bitrise.io/app/1dcd88cfb9a0f14e)
 [![Version](https://img.shields.io/cocoapods/v/AZDropdownMenu.svg?style=flat)](http://cocoapods.org/pods/AZDropdownMenu)
 [![License](https://img.shields.io/cocoapods/l/AZDropdownMenu.svg?style=flat)](http://cocoapods.org/pods/AZDropdownMenu)
 [![Platform](https://img.shields.io/cocoapods/p/AZDropdownMenu.svg?style=flat)](http://cocoapods.org/pods/AZDropdownMenu)
@@ -43,7 +43,11 @@ Then pass the array to the initializer
 let menu = AZDropdownMenu(titles: titles)
 ```
 
-Set up so that the `UIBarButtonItem` is associated with a function that shows the menu
+Set up so that the `UIBarButtonItem` is asso
+
+
+
+ated with a function that shows the menu
 ```
 let button = UIBarButtonItem(image: UIImage(named: "menu_image"), style: .Plain, target: self, action: "showDropdown")
 navigationItem.leftBarButtonItem = menuButton
