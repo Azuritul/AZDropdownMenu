@@ -47,19 +47,19 @@ class ViewController: UIViewController {
         return button
     }
 
-    func onDemo1Tapped() {
+    @objc func onDemo1Tapped() {
         let controller = DemoViewController1()
         let nv = UINavigationController(rootViewController: controller)
         nv.navigationBar.isTranslucent = false
-        nv.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black]
+        nv.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
         self.present(nv, animated: true, completion: nil)
     }
 
-    func onDemo2Tapped() {
+    @objc func onDemo2Tapped() {
         let controller = DemoViewController2()
         let nv = UINavigationController(rootViewController: controller)
         nv.navigationBar.isTranslucent = false
-        nv.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black]
+        nv.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
         self.present(nv, animated: true, completion: nil)
     }
 
@@ -89,7 +89,7 @@ class DemoViewController1: UIViewController {
         rightMenu = buildDummyDefaultMenu()
     }
 
-    func showRightDropdown() {
+    @objc func showRightDropdown() {
         if self.rightMenu?.isDescendant(of: self.view) == true {
             self.rightMenu?.hideMenu()
         } else {
@@ -110,7 +110,7 @@ class DemoViewController2: UIViewController, UITableViewDataSource, UITableViewD
         view.backgroundColor = UIColor.white
 
         let cancelButton = UIBarButtonItem(image: UIImage(named: "cancel"), style: .plain, target: self, action: #selector(UIViewController.dismissFromController))
-        let menuButton = UIBarButtonItem(image: UIImage(named: "options"), style: .plain, target: self, action: #selector(DemoViewController1.showRightDropdown))
+        let menuButton = UIBarButtonItem(image: UIImage(named: "options"), style: .plain, target: self, action: #selector(DemoViewController2.showRightDropdown))
         tableView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = menuButton
@@ -121,7 +121,8 @@ class DemoViewController2: UIViewController, UITableViewDataSource, UITableViewD
         self.tableView.delegate = self
         self.view.addSubview(self.tableView)
     }
-
+    
+    @objc
     func showRightDropdown() {
         if self.rightMenu?.isDescendant(of: self.view) == true {
             self.rightMenu?.hideMenu()
@@ -220,7 +221,7 @@ extension UIViewController {
         return dataSource
     }
 
-    func dismissFromController() {
+    @objc func dismissFromController() {
         self.dismiss(animated: true, completion: nil)
     }
 }
