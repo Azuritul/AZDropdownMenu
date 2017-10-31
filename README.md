@@ -96,6 +96,9 @@ Currently AZDropdownMenu can be customized with the following properties. More w
 - `shouldDismissMenuOnDrag` If set to true, menu would be dismissed on drag. Default value is `false`.
 
 ## Version
+- 1.1.3
+   - Update for Swift 4 syntax
+   
 - 1.1.2
    - Update for Swift 3 syntax
 
