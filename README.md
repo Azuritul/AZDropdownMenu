@@ -4,7 +4,7 @@
 [![Version](https://img.shields.io/cocoapods/v/AZDropdownMenu.svg?style=flat)](http://cocoapods.org/pods/AZDropdownMenu)
 [![License](https://img.shields.io/cocoapods/l/AZDropdownMenu.svg?style=flat)](http://cocoapods.org/pods/AZDropdownMenu)
 [![Platform](https://img.shields.io/cocoapods/p/AZDropdownMenu.svg?style=flat)](http://cocoapods.org/pods/AZDropdownMenu)
-[![Language](https://img.shields.io/badge/swift-3-orange.svg)](http://swift.org)
+[![Language](https://img.shields.io/badge/swift-4-orange.svg)](http://swift.org)
 
 AZDropdownMenu is a simple dropdown menu component that supports Swift.
 
@@ -31,6 +31,8 @@ it, simply add the following line to your Podfile:
 use_frameworks!
 pod 'AZDropdownMenu'
 ```
+
+Use version 1.1.2 if you don't need Swift 4 support.
 
 ## Usage
 
