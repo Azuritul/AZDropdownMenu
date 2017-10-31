@@ -1,3 +1,6 @@
+### 1.1.3 Release Notes
+   - Update for Swift 4
+   
 ### 1.1.2 Release Notes
    - Update for Swift 3
 
