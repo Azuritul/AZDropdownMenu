@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 s.name             = "AZDropdownMenu"
-s.version          = "1.1.1"
+s.version          = "1.1.3"
 s.summary          = "A simple dropdown menu for iOS written in Swift!"
 
 # This description is used to generate tags and improve search results.
@@ -32,7 +32,7 @@ s.requires_arc = true
 
 s.source_files = 'Pod/Classes/**/*'
 s.resource_bundles = {
-'AZDropdownMenu' => ['Pod/Assets/*.png']
+#'AZDropdownMenu' => ['Pod/Assets/*.png']
 }
 
 # s.public_header_files = 'Pod/Classes/**/*.h'

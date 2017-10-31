@@ -8,34 +8,34 @@
 
 import Foundation
 
-public class AZDropdownMenuBaseCell : UITableViewCell, AZDropdownMenuCellProtocol {
+open class AZDropdownMenuBaseCell : UITableViewCell, AZDropdownMenuCellProtocol {
     
-    public func configureData(data: AZDropdownMenuItemData) {
+    open func configureData(_ data: AZDropdownMenuItemData) {
         self.textLabel?.text = data.title
     }
 
-    func configureStyle(config: AZDropdownMenuConfig) {
-        self.selectionStyle = .None
+    func configureStyle(_ config: AZDropdownMenuConfig) {
+        self.selectionStyle = .none
         self.backgroundColor = config.itemColor
         self.textLabel?.textColor = config.itemFontColor
         self.textLabel?.font = UIFont(name: config.itemFont, size: config.itemFontSize)
 
         switch config.itemAlignment {
-        case .Left:
-            self.textLabel?.textAlignment = .Left
-        case .Right:
-            self.textLabel?.textAlignment = .Right
-        case .Center:
-            self.textLabel?.textAlignment = .Center
+        case .left:
+            self.textLabel?.textAlignment = .left
+        case .right:
+            self.textLabel?.textAlignment = .right
+        case .center:
+            self.textLabel?.textAlignment = .center
         }
     }
 }
 
 protocol AZDropdownMenuCellProtocol {
-    func configureData(data: AZDropdownMenuItemData)
-    func configureStyle(configuration:AZDropdownMenuConfig)
+    func configureData(_ data: AZDropdownMenuItemData)
+    func configureStyle(_ configuration:AZDropdownMenuConfig)
 }
 
 public enum AZDropdownMenuItemAlignment {
-    case Left, Right, Center
+    case left, right, center
 }
